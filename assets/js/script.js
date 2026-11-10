@@ -18,7 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   refreshIcons();
 
-  /* ── 2. Scroll progress bar ── */
+  /* ── 2. Dynamic footer year ── */
+  const yearEl = document.getElementById('footer-year');
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
+
+  /* ── 3. Scroll progress bar ── */
   const progressBar = document.getElementById('scroll-progress');
   if (progressBar) {
     window.addEventListener('scroll', () => {
@@ -27,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
-  /* ── 3. Sticky header shadow ── */
+  /* ── 4. Sticky header shadow ── */
   const header = document.getElementById('main-header');
   if (header) {
     window.addEventListener('scroll', () => {
@@ -35,16 +41,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
-  /* ── 4. Mobile menu drawer ── */
-  const hamburgerBtn  = document.getElementById('hamburger-btn');
-  const closeMenuBtn  = document.getElementById('mobile-menu-close');
-  const mobileMenu    = document.getElementById('mobile-menu');
-  const menuOverlay   = document.getElementById('mobile-menu-overlay');
-  const mobileLinks   = document.querySelectorAll('.mobile-menu-link');
+  /* ── 5. Mobile menu drawer ── */
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const closeMenuBtn = document.getElementById('mobile-menu-close');
+  const mobileMenu   = document.getElementById('mobile-menu');
+  const menuOverlay  = document.getElementById('mobile-menu-overlay');
+  const mobileLinks  = document.querySelectorAll('.mobile-nav-link, [data-close-menu]');
 
   function openMenu() {
     if (!mobileMenu || !menuOverlay) return;
     mobileMenu.classList.add('open');
+    mobileMenu.setAttribute('aria-hidden', 'false');
     menuOverlay.classList.add('open');
     document.body.style.overflow = 'hidden';
     hamburgerBtn?.setAttribute('aria-expanded', 'true');
@@ -53,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function closeMenu() {
     if (!mobileMenu || !menuOverlay) return;
     mobileMenu.classList.remove('open');
+    mobileMenu.setAttribute('aria-hidden', 'true');
     menuOverlay.classList.remove('open');
     document.body.style.overflow = '';
     hamburgerBtn?.setAttribute('aria-expanded', 'false');
@@ -66,18 +74,28 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape' && mobileMenu?.classList.contains('open')) closeMenu();
   });
 
-  /* ── 5. Count-up animation ── */
+  /* ── 6. Count-up animation for stats ── */
   const statNumbers = document.querySelectorAll('.stat-number[data-count]');
   if (statNumbers.length) {
     function animateCount(el, target, suffix, duration = 1600) {
-      if (PRM) { el.textContent = target.toLocaleString() + suffix; return; }
+      const isFloat = String(target).includes('.');
+      if (PRM) {
+        el.textContent = (isFloat ? target.toFixed(1) : target.toLocaleString()) + suffix;
+        return;
+      }
       const start = performance.now();
       (function update(now) {
         const p = Math.min((now - start) / duration, 1);
         const ease = 1 - Math.pow(1 - p, 4);
-        el.textContent = Math.round(ease * target).toLocaleString() + suffix;
+        if (isFloat) {
+          const current = (ease * target).toFixed(1);
+          el.textContent = current + suffix;
+        } else {
+          const current = Math.round(ease * target);
+          el.textContent = current.toLocaleString() + suffix;
+        }
         if (p < 1) requestAnimationFrame(update);
-        else el.textContent = target.toLocaleString() + suffix;
+        else el.textContent = (isFloat ? target.toFixed(1) : target.toLocaleString()) + suffix;
       })(start);
     }
 
@@ -85,31 +103,33 @@ document.addEventListener('DOMContentLoaded', () => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const el = entry.target;
-          animateCount(el, parseInt(el.dataset.count, 10), el.dataset.suffix || '');
+          const raw = el.dataset.count;
+          const target = raw.includes('.') ? parseFloat(raw) : parseInt(raw, 10);
+          animateCount(el, target, el.dataset.suffix || '');
           statsObs.unobserve(el);
         }
       });
-    }, { threshold: 0.4 });
+    }, { threshold: 0.3 });
 
     statNumbers.forEach(el => statsObs.observe(el));
   }
 
-  /* ── 6. Ripple effect ── */
-  document.querySelectorAll('.btn, .sticky-action-item').forEach(btn => {
+  /* ── 7. Touch & click ripple effect ── */
+  document.querySelectorAll('.btn, .sticky-btn').forEach(btn => {
     btn.addEventListener('pointerdown', function(e) {
       const rect = this.getBoundingClientRect();
       const d = Math.max(rect.width, rect.height);
       const r = d / 2;
       const span = document.createElement('span');
       span.style.cssText = `width:${d}px;height:${d}px;left:${e.clientX - rect.left - r}px;top:${e.clientY - rect.top - r}px`;
-      span.className = 'ripple' + (this.classList.contains('btn-call') || this.classList.contains('sticky-action-item') ? ' dark' : '');
+      span.className = 'ripple';
       this.querySelector('.ripple')?.remove();
       this.appendChild(span);
       setTimeout(() => span.remove(), 600);
     });
   });
 
-  /* ── 7. Swipe carousel dots ── */
+  /* ── 8. Swipe carousels with sync dots (Services & Reviews) ── */
   function setupCarousel(trackId, dotsId) {
     const track = document.getElementById(trackId);
     const dotsWrap = document.getElementById(dotsId);
@@ -120,27 +140,34 @@ document.addEventListener('DOMContentLoaded', () => {
     dotsWrap.innerHTML = '';
     cards.forEach((_, i) => {
       const dot = document.createElement('button');
-      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.className = 'dot' + (i === 0 ? ' dot-active' : '');
+      dot.setAttribute('role', 'tab');
       dot.setAttribute('aria-label', `Slide ${i + 1}`);
+      dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
       dot.addEventListener('click', () => {
         cards[i].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
       });
       dotsWrap.appendChild(dot);
     });
 
-    const dots = dotsWrap.querySelectorAll('.carousel-dot');
+    const dots = dotsWrap.querySelectorAll('.dot');
     track.addEventListener('scroll', () => {
-      const w = cards[0].offsetWidth + parseInt(getComputedStyle(track).gap || 16);
-      const idx = Math.round(track.scrollLeft / w);
-      dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+      const firstCard = cards[0];
+      const w = firstCard ? firstCard.offsetWidth + 16 : 280;
+      const idx = Math.min(cards.length - 1, Math.max(0, Math.round(track.scrollLeft / w)));
+      dots.forEach((d, i) => {
+        const active = i === idx;
+        d.classList.toggle('dot-active', active);
+        d.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
     }, { passive: true });
   }
 
-  setupCarousel('services-track', 'services-dots');
-  setupCarousel('reviews-track', 'reviews-dots');
+  setupCarousel('services-carousel', 'services-dots');
+  setupCarousel('reviews-carousel', 'reviews-dots');
 
-  /* ── 8. Scroll reveal ── */
-  const revealEls = document.querySelectorAll('.reveal-on-scroll');
+  /* ── 9. Scroll reveal animations ── */
+  const revealEls = document.querySelectorAll('.service-card, .why-tile, .step-box, .review-card, .faq-item');
   if (revealEls.length) {
     if (PRM) {
       revealEls.forEach(el => el.classList.add('visible'));
@@ -152,141 +179,141 @@ document.addEventListener('DOMContentLoaded', () => {
             obs.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
       revealEls.forEach(el => obs.observe(el));
     }
   }
 
-  /* ── 9. Inline booking form → WhatsApp ── */
-  const bookingForm    = document.getElementById('inline-booking-form');
-  const formWrap       = document.getElementById('booking-form-wrap');
-  const successBox     = document.getElementById('booking-success-box');
-  const resetBtn       = document.getElementById('booking-reset-btn');
+  /* ── 10. Booking form → Prefilled WhatsApp ── */
+  const bookingForm = document.getElementById('booking-form');
+  const formWrap    = document.getElementById('booking-form-wrap');
+  const successBox  = document.getElementById('booking-success');
+  const resetBtn    = document.getElementById('booking-reset');
 
   if (bookingForm) {
-    const nameInput  = document.getElementById('form-name');
-    const phoneInput = document.getElementById('form-phone');
-    const brandInput = document.getElementById('form-brand');
-    const issueInput = document.getElementById('form-issue');
-    const timeInput  = document.getElementById('form-time');
-
-    function validateField(input, errorId, ok, msg) {
-      const errEl = document.getElementById(errorId);
-      input.classList.toggle('is-invalid', !ok);
-      if (errEl) {
-        errEl.textContent = msg;
-        errEl.classList.toggle('visible', !ok);
-      }
-      return ok;
-    }
-
-    nameInput?.addEventListener('input',  () => validateField(nameInput,  'err-name',  nameInput.value.trim().length >= 2,       'Please enter your full name'));
-    phoneInput?.addEventListener('input', () => validateField(phoneInput, 'err-phone', /^[6-9]\d{9}$/.test(phoneInput.value.trim()), 'Enter a valid 10-digit number'));
-    brandInput?.addEventListener('change',() => validateField(brandInput, 'err-brand', brandInput.value !== '',                  'Please select your purifier brand'));
+    const nameInput  = document.getElementById('f-name');
+    const phoneInput = document.getElementById('f-phone');
+    const brandInput = document.getElementById('f-brand');
+    const issueInput = document.getElementById('f-issue');
+    const timeInput  = document.getElementById('f-time');
 
     bookingForm.addEventListener('submit', e => {
       e.preventDefault();
-      const v1 = validateField(nameInput,  'err-name',  nameInput.value.trim().length >= 2,         'Please enter your full name');
-      const v2 = validateField(phoneInput, 'err-phone', /^[6-9]\d{9}$/.test(phoneInput.value.trim()),'Enter a valid 10-digit number');
-      const v3 = validateField(brandInput, 'err-brand', brandInput.value !== '',                    'Please select your purifier brand');
-      if (!v1 || !v2 || !v3) return;
 
-      const msg = encodeURIComponent(
-        `Hi, I need RO service for my ${brandInput.value}.\n` +
-        `• Name: ${nameInput.value.trim()}\n` +
-        `• Phone: ${phoneInput.value.trim()}\n` +
-        `• Issue: ${issueInput?.value || 'General RO Service'}\n` +
-        `• Preferred Time: ${timeInput?.value || 'As Soon as Possible (30-60 min)'}\n` +
-        `• Location: Visakhapatnam`
-      );
+      const nameVal  = nameInput ? nameInput.value.trim() : '';
+      const phoneVal = phoneInput ? phoneInput.value.trim() : '';
+      const brandVal = brandInput && brandInput.value ? brandInput.value : 'Water Purifier';
+      const issueVal = issueInput && issueInput.value ? issueInput.value : 'General Service';
+      const timeVal  = timeInput && timeInput.value ? timeInput.value : 'As soon as possible (30-60 min)';
 
-      window.open(`https://wa.me/919845331753?text=${msg}`, '_blank', 'noopener,noreferrer');
+      if (!nameVal || nameVal.length < 2) {
+        nameInput?.focus();
+        nameInput?.classList.add('input-error');
+        return;
+      }
+      nameInput?.classList.remove('input-error');
+
+      if (!phoneVal || !/^[6-9]\d{9}$/.test(phoneVal)) {
+        phoneInput?.focus();
+        phoneInput?.classList.add('input-error');
+        return;
+      }
+      phoneInput?.classList.remove('input-error');
+
+      const whatsappText =
+        `Hi HMT Aqua, I want to book RO service.\n\n` +
+        `• Name: ${nameVal}\n` +
+        `• Mobile: ${phoneVal}\n` +
+        `• Brand: ${brandVal}\n` +
+        `• Issue: ${issueVal}\n` +
+        `• Preferred Time: ${timeVal}\n` +
+        `• City: Visakhapatnam`;
+
+      const whatsappUrl = `https://wa.me/919845331753?text=${encodeURIComponent(whatsappText)}`;
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
 
       if (formWrap && successBox) {
-        formWrap.style.display = 'none';
-        successBox.classList.add('show');
+        formWrap.hidden = true;
+        successBox.hidden = false;
         refreshIcons();
       }
     });
 
-    resetBtn?.addEventListener('click', () => {
+    resetBtn?.addEventListener('click', e => {
+      e.preventDefault();
       bookingForm.reset();
       if (formWrap && successBox) {
-        successBox.classList.remove('show');
-        formWrap.style.display = 'block';
+        successBox.hidden = true;
+        formWrap.hidden = false;
       }
     });
   }
 
-  /* ── 10. FAQ accordion ── */
-  document.querySelectorAll('.faq-question-btn').forEach(btn => {
+  /* ── 11. FAQ accordion ── */
+  const faqButtons = document.querySelectorAll('.faq-question');
+  faqButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-      const item  = btn.closest('.faq-item');
-      const panel = item?.querySelector('.faq-answer-panel');
-      const isOpen = item?.classList.contains('open');
+      const item = btn.closest('.faq-item');
+      const answer = item?.querySelector('.faq-answer');
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
 
-      document.querySelectorAll('.faq-item.open').forEach(open => {
-        open.classList.remove('open');
-        open.querySelector('.faq-answer-panel')?.classList.remove('open');
-        open.querySelector('.faq-question-btn')?.setAttribute('aria-expanded', 'false');
+      // Close all others
+      document.querySelectorAll('.faq-item').forEach(other => {
+        if (other !== item) {
+          other.classList.remove('faq-open');
+          const otherBtn = other.querySelector('.faq-question');
+          const otherAns = other.querySelector('.faq-answer');
+          otherBtn?.setAttribute('aria-expanded', 'false');
+          if (otherAns) otherAns.hidden = true;
+        }
       });
 
-      if (!isOpen && item && panel) {
-        item.classList.add('open');
-        panel.classList.add('open');
+      // Toggle current
+      if (isExpanded) {
+        btn.setAttribute('aria-expanded', 'false');
+        item?.classList.remove('faq-open');
+        if (answer) answer.hidden = true;
+      } else {
         btn.setAttribute('aria-expanded', 'true');
+        item?.classList.add('faq-open');
+        if (answer) answer.hidden = false;
       }
     });
   });
 
-  /* ── 11. SEO collapsible "Read more" ── */
-  const seoBtn  = document.getElementById('seo-read-more-btn');
-  const seoBody = document.getElementById('seo-collapsible-content');
-  if (seoBtn && seoBody) {
-    seoBtn.addEventListener('click', () => {
-      const expanded = seoBtn.getAttribute('aria-expanded') === 'true';
-      seoBtn.setAttribute('aria-expanded', String(!expanded));
-      seoBody.classList.toggle('open', !expanded);
-      const span = seoBtn.querySelector('span');
-      if (span) span.textContent = expanded ? 'Read more about our services in Visakhapatnam' : 'Show less';
+  /* ── 12. SEO Collapsible "Read more" ── */
+  const seoToggle = document.getElementById('seo-toggle');
+  const seoContent = document.getElementById('seo-content');
+  if (seoToggle && seoContent) {
+    seoToggle.addEventListener('click', () => {
+      const expanded = seoToggle.getAttribute('aria-expanded') === 'true';
+      seoToggle.setAttribute('aria-expanded', String(!expanded));
+      seoContent.hidden = expanded;
+      const label = seoToggle.querySelector('span');
+      if (label) {
+        label.textContent = expanded
+          ? 'Read more about our service coverage'
+          : 'Show less about our service coverage';
+      }
     });
   }
 
-  /* ── 12. Lazy-load Google Maps ── */
-  const mapPlaceholder = document.getElementById('map-placeholder-trigger');
-  const mapIframeWrap  = document.getElementById('map-iframe-wrapper');
-  const contactSection = document.getElementById('contact');
-
-  function loadMap() {
-    if (!mapIframeWrap || mapIframeWrap.classList.contains('loaded')) return;
-    mapIframeWrap.classList.add('loaded');
-    mapPlaceholder && (mapPlaceholder.style.display = 'none');
-    const iframe = mapIframeWrap.querySelector('iframe[data-src]');
-    if (iframe) { iframe.src = iframe.getAttribute('data-src'); iframe.removeAttribute('data-src'); }
-  }
-
-  mapPlaceholder?.addEventListener('click', loadMap);
-  mapPlaceholder?.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') loadMap(); });
-
-  if (contactSection) {
-    const mapObs = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) { setTimeout(loadMap, 1000); mapObs.disconnect(); }
-    }, { threshold: 0.1 });
-    mapObs.observe(contactSection);
-  }
-
-  /* ── 13. Footer mobile accordion ── */
-  document.querySelectorAll('.footer-col-title').forEach(btn => {
+  /* ── 13. Mobile Footer Collapsible Columns ── */
+  const footerToggles = document.querySelectorAll('.footer-col-toggle');
+  footerToggles.forEach(btn => {
     btn.addEventListener('click', () => {
-      if (window.innerWidth <= 767) {
-        btn.closest('.footer-collapsible-col')?.classList.toggle('open');
+      if (window.innerWidth <= 768) {
         const expanded = btn.getAttribute('aria-expanded') === 'true';
         btn.setAttribute('aria-expanded', String(!expanded));
+        const list = btn.nextElementSibling;
+        if (list) {
+          list.classList.toggle('footer-col-open', !expanded);
+        }
       }
     });
   });
 
-  /* ── 14. Smooth scroll with header offset ── */
+  /* ── 14. Smooth scroll with sticky header compensation ── */
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', function(e) {
       const hash = this.getAttribute('href');
@@ -295,17 +322,19 @@ document.addEventListener('DOMContentLoaded', () => {
       if (target) {
         e.preventDefault();
         const offset = (header?.offsetHeight || 70) + 8;
-        window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - offset, behavior: 'smooth' });
+        window.scrollTo({
+          top: target.getBoundingClientRect().top + window.scrollY - offset,
+          behavior: 'smooth'
+        });
         closeMenu();
       }
     });
   });
 
-  /* ── 15. Brand marquee: pause on touch/hover (CSS handles hover, JS handles touch) ── */
+  /* ── 15. Brand marquee hover/touch pause ── */
   const marqueeTrack = document.querySelector('.marquee-track');
   if (marqueeTrack) {
     marqueeTrack.addEventListener('touchstart', () => marqueeTrack.style.animationPlayState = 'paused', { passive: true });
-    marqueeTrack.addEventListener('touchend',   () => marqueeTrack.style.animationPlayState = 'running');
+    marqueeTrack.addEventListener('touchend', () => marqueeTrack.style.animationPlayState = 'running');
   }
 });
-

@@ -1,15 +1,16 @@
 /**
  * HMT Aqua - Premium Vanilla JS Engine
- * Mobile-first • 60fps animations • Conversion & trust features
+ * Mobile-first · 60fps animations · Conversion & trust features
+ * Respects prefers-reduced-motion
  */
 
 'use strict';
 
 document.addEventListener('DOMContentLoaded', () => {
-  // ── 0. Check prefers-reduced-motion ──
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* ── 0. Reduced-motion flag ── */
+  const PRM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ── 1. Lucide Icons Initialization ──
+  /* ── 1. Lucide icons ── */
   function refreshIcons() {
     if (typeof lucide !== 'undefined' && lucide.createIcons) {
       lucide.createIcons();
@@ -17,384 +18,323 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   refreshIcons();
 
-  // ── 2. Scroll Progress Bar ──
+  /* ── 2. Dynamic footer year ── */
+  const yearEl = document.getElementById('footer-year');
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
+
+  /* ── 3. Scroll progress bar ── */
   const progressBar = document.getElementById('scroll-progress');
   if (progressBar) {
     window.addEventListener('scroll', () => {
-      const scrollTotal = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrollCurrent = window.scrollY;
-      const percentage = scrollTotal > 0 ? (scrollCurrent / scrollTotal) * 100 : 0;
-      progressBar.style.width = percentage + '%';
+      const total = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      progressBar.style.width = total > 0 ? (window.scrollY / total * 100) + '%' : '0%';
     }, { passive: true });
   }
 
-  // ── 3. Slim Sticky Header State ──
+  /* ── 4. Sticky header shadow ── */
   const header = document.getElementById('main-header');
   if (header) {
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 30) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
+      header.classList.toggle('scrolled', window.scrollY > 30);
     }, { passive: true });
   }
 
-  // ── 4. Mobile Menu Drawer ──
+  /* ── 5. Mobile menu drawer ── */
   const hamburgerBtn = document.getElementById('hamburger-btn');
   const closeMenuBtn = document.getElementById('mobile-menu-close');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const menuOverlay = document.getElementById('mobile-menu-overlay');
-  const mobileLinks = document.querySelectorAll('.mobile-menu-link');
+  const mobileMenu   = document.getElementById('mobile-menu');
+  const menuOverlay  = document.getElementById('mobile-menu-overlay');
+  const mobileLinks  = document.querySelectorAll('.mobile-nav-link, [data-close-menu]');
 
-  function openMobileMenu() {
+  function openMenu() {
     if (!mobileMenu || !menuOverlay) return;
     mobileMenu.classList.add('open');
+    mobileMenu.setAttribute('aria-hidden', 'false');
     menuOverlay.classList.add('open');
     document.body.style.overflow = 'hidden';
     hamburgerBtn?.setAttribute('aria-expanded', 'true');
   }
 
-  function closeMobileMenu() {
+  function closeMenu() {
     if (!mobileMenu || !menuOverlay) return;
     mobileMenu.classList.remove('open');
+    mobileMenu.setAttribute('aria-hidden', 'true');
     menuOverlay.classList.remove('open');
     document.body.style.overflow = '';
     hamburgerBtn?.setAttribute('aria-expanded', 'false');
   }
 
-  if (hamburgerBtn) hamburgerBtn.addEventListener('click', openMobileMenu);
-  if (closeMenuBtn) closeMenuBtn.addEventListener('click', closeMobileMenu);
-  if (menuOverlay) menuOverlay.addEventListener('click', closeMobileMenu);
-
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', closeMobileMenu);
+  hamburgerBtn?.addEventListener('click', openMenu);
+  closeMenuBtn?.addEventListener('click', closeMenu);
+  menuOverlay?.addEventListener('click', closeMenu);
+  mobileLinks.forEach(l => l.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mobileMenu?.classList.contains('open')) closeMenu();
   });
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('open')) {
-      closeMobileMenu();
-    }
-  });
-
-  // ── 5. Trust Stats Count-Up Animation ──
+  /* ── 6. Count-up animation for stats ── */
   const statNumbers = document.querySelectorAll('.stat-number[data-count]');
-  if (statNumbers.length > 0) {
+  if (statNumbers.length) {
     function animateCount(el, target, suffix, duration = 1600) {
-      if (prefersReducedMotion) {
-        el.textContent = target.toLocaleString() + suffix;
+      const isFloat = String(target).includes('.');
+      if (PRM) {
+        el.textContent = (isFloat ? target.toFixed(1) : target.toLocaleString()) + suffix;
         return;
       }
-      const startTime = performance.now();
-      function update(currentTime) {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        // Ease out quart
-        const ease = 1 - Math.pow(1 - progress, 4);
-        const currentVal = Math.round(ease * target);
-        el.textContent = currentVal.toLocaleString() + suffix;
-        if (progress < 1) {
-          requestAnimationFrame(update);
+      const start = performance.now();
+      (function update(now) {
+        const p = Math.min((now - start) / duration, 1);
+        const ease = 1 - Math.pow(1 - p, 4);
+        if (isFloat) {
+          const current = (ease * target).toFixed(1);
+          el.textContent = current + suffix;
         } else {
-          el.textContent = target.toLocaleString() + suffix;
+          const current = Math.round(ease * target);
+          el.textContent = current.toLocaleString() + suffix;
         }
-      }
-      requestAnimationFrame(update);
+        if (p < 1) requestAnimationFrame(update);
+        else el.textContent = (isFloat ? target.toFixed(1) : target.toLocaleString()) + suffix;
+      })(start);
     }
 
-    const statsObserver = new IntersectionObserver((entries) => {
+    const statsObs = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const el = entry.target;
-          const target = parseInt(el.getAttribute('data-count'), 10);
-          const suffix = el.getAttribute('data-suffix') || '';
-          animateCount(el, target, suffix);
-          statsObserver.unobserve(el);
+          const raw = el.dataset.count;
+          const target = raw.includes('.') ? parseFloat(raw) : parseInt(raw, 10);
+          animateCount(el, target, el.dataset.suffix || '');
+          statsObs.unobserve(el);
         }
       });
-    }, { threshold: 0.4 });
+    }, { threshold: 0.3 });
 
-    statNumbers.forEach(item => statsObserver.observe(item));
+    statNumbers.forEach(el => statsObs.observe(el));
   }
 
-  // ── 6. Ripple Effect for Buttons ──
-  const rippleTargets = document.querySelectorAll('.btn, .sticky-action-item');
-  rippleTargets.forEach(btn => {
-    btn.addEventListener('pointerdown', function (e) {
+  /* ── 7. Touch & click ripple effect ── */
+  document.querySelectorAll('.btn, .sticky-btn').forEach(btn => {
+    btn.addEventListener('pointerdown', function(e) {
       const rect = this.getBoundingClientRect();
-      const circle = document.createElement('span');
-      const diameter = Math.max(rect.width, rect.height);
-      const radius = diameter / 2;
-
-      circle.style.width = circle.style.height = `${diameter}px`;
-      circle.style.left = `${e.clientX - rect.left - radius}px`;
-      circle.style.top = `${e.clientY - rect.top - radius}px`;
-      circle.classList.add('ripple');
-
-      if (this.classList.contains('btn-call') || this.classList.contains('sticky-action-item')) {
-        circle.classList.add('dark');
-      }
-
-      const existingRipple = this.querySelector('.ripple');
-      if (existingRipple) {
-        existingRipple.remove();
-      }
-
-      this.appendChild(circle);
-      setTimeout(() => circle.remove(), 600);
+      const d = Math.max(rect.width, rect.height);
+      const r = d / 2;
+      const span = document.createElement('span');
+      span.style.cssText = `width:${d}px;height:${d}px;left:${e.clientX - rect.left - r}px;top:${e.clientY - rect.top - r}px`;
+      span.className = 'ripple';
+      this.querySelector('.ripple')?.remove();
+      this.appendChild(span);
+      setTimeout(() => span.remove(), 600);
     });
   });
 
-  // ── 7. Carousel Dots Synchronization (Services & Reviews) ──
-  function setupCarousel(trackId, dotsContainerId) {
+  /* ── 8. Swipe carousels with sync dots (Services & Reviews) ── */
+  function setupCarousel(trackId, dotsId) {
     const track = document.getElementById(trackId);
-    const dotsContainer = document.getElementById(dotsContainerId);
-    if (!track || !dotsContainer) return;
+    const dotsWrap = document.getElementById(dotsId);
+    if (!track || !dotsWrap) return;
+    const cards = Array.from(track.children);
+    if (!cards.length) return;
 
-    const cards = track.children;
-    if (cards.length === 0) return;
-
-    dotsContainer.innerHTML = '';
-    Array.from(cards).forEach((_, idx) => {
+    dotsWrap.innerHTML = '';
+    cards.forEach((_, i) => {
       const dot = document.createElement('button');
-      dot.className = `carousel-dot ${idx === 0 ? 'active' : ''}`;
-      dot.setAttribute('aria-label', `Go to slide ${idx + 1}`);
+      dot.className = 'dot' + (i === 0 ? ' dot-active' : '');
+      dot.setAttribute('role', 'tab');
+      dot.setAttribute('aria-label', `Slide ${i + 1}`);
+      dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
       dot.addEventListener('click', () => {
-        cards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+        cards[i].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
       });
-      dotsContainer.appendChild(dot);
+      dotsWrap.appendChild(dot);
     });
 
-    const dots = dotsContainer.querySelectorAll('.carousel-dot');
-
-    function onScrollTrack() {
-      const cardWidth = cards[0].offsetWidth + 16;
-      const scrollIndex = Math.round(track.scrollLeft / cardWidth);
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === scrollIndex);
+    const dots = dotsWrap.querySelectorAll('.dot');
+    track.addEventListener('scroll', () => {
+      const firstCard = cards[0];
+      const w = firstCard ? firstCard.offsetWidth + 16 : 280;
+      const idx = Math.min(cards.length - 1, Math.max(0, Math.round(track.scrollLeft / w)));
+      dots.forEach((d, i) => {
+        const active = i === idx;
+        d.classList.toggle('dot-active', active);
+        d.setAttribute('aria-selected', active ? 'true' : 'false');
       });
-    }
-
-    track.addEventListener('scroll', onScrollTrack, { passive: true });
+    }, { passive: true });
   }
 
-  setupCarousel('services-track', 'services-dots');
-  setupCarousel('reviews-track', 'reviews-dots');
+  setupCarousel('services-carousel', 'services-dots');
+  setupCarousel('reviews-carousel', 'reviews-dots');
 
-  // ── 8. Scroll Reveal (IntersectionObserver) ──
-  const revealElements = document.querySelectorAll('.reveal-on-scroll');
-  if (revealElements.length > 0) {
-    if (prefersReducedMotion) {
-      revealElements.forEach(el => el.classList.add('visible'));
+  /* ── 9. Scroll reveal animations ── */
+  const revealEls = document.querySelectorAll('.service-card, .why-tile, .step-box, .review-card, .faq-item');
+  if (revealEls.length) {
+    if (PRM) {
+      revealEls.forEach(el => el.classList.add('visible'));
     } else {
-      const revealObserver = new IntersectionObserver((entries) => {
+      const obs = new IntersectionObserver(entries => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
-            revealObserver.unobserve(entry.target);
+            obs.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-      revealElements.forEach(el => revealObserver.observe(el));
+      }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+      revealEls.forEach(el => obs.observe(el));
     }
   }
 
-  // ── 9. Inline Booking Form with Floating Labels & Live Validation ──
-  const bookingForm = document.getElementById('inline-booking-form');
-  const bookingFormWrap = document.getElementById('booking-form-wrap');
-  const bookingSuccessBox = document.getElementById('booking-success-box');
-  const bookingResetBtn = document.getElementById('booking-reset-btn');
+  /* ── 10. Booking form → Prefilled WhatsApp ── */
+  const bookingForm = document.getElementById('booking-form');
+  const formWrap    = document.getElementById('booking-form-wrap');
+  const successBox  = document.getElementById('booking-success');
+  const resetBtn    = document.getElementById('booking-reset');
 
   if (bookingForm) {
-    const nameInput = document.getElementById('form-name');
-    const phoneInput = document.getElementById('form-phone');
-    const brandInput = document.getElementById('form-brand');
-    const issueInput = document.getElementById('form-issue');
-    const timeInput = document.getElementById('form-time');
+    const nameInput  = document.getElementById('f-name');
+    const phoneInput = document.getElementById('f-phone');
+    const brandInput = document.getElementById('f-brand');
+    const issueInput = document.getElementById('f-issue');
+    const timeInput  = document.getElementById('f-time');
 
-    function validateField(input, errorId, condition, msg) {
-      const errEl = document.getElementById(errorId);
-      if (!condition) {
-        input.classList.add('is-invalid');
-        if (errEl) {
-          errEl.textContent = msg;
-          errEl.classList.add('visible');
-        }
-        return false;
-      } else {
-        input.classList.remove('is-invalid');
-        if (errEl) {
-          errEl.classList.remove('visible');
-        }
-        return true;
-      }
-    }
-
-    // Live validation on blur & input
-    nameInput?.addEventListener('input', () => {
-      validateField(nameInput, 'err-name', nameInput.value.trim().length >= 2, 'Please enter your full name');
-    });
-
-    phoneInput?.addEventListener('input', () => {
-      const phoneVal = phoneInput.value.trim();
-      validateField(phoneInput, 'err-phone', /^[6-9]\d{9}$/.test(phoneVal), 'Enter a valid 10-digit mobile number');
-    });
-
-    brandInput?.addEventListener('change', () => {
-      validateField(brandInput, 'err-brand', brandInput.value !== '', 'Please select your purifier brand');
-    });
-
-    bookingForm.addEventListener('submit', (e) => {
+    bookingForm.addEventListener('submit', e => {
       e.preventDefault();
 
-      const isNameValid = validateField(nameInput, 'err-name', nameInput.value.trim().length >= 2, 'Please enter your full name');
-      const isPhoneValid = validateField(phoneInput, 'err-phone', /^[6-9]\d{9}$/.test(phoneInput.value.trim()), 'Enter a valid 10-digit mobile number');
-      const isBrandValid = validateField(brandInput, 'err-brand', brandInput.value !== '', 'Please select your purifier brand');
+      const nameVal  = nameInput ? nameInput.value.trim() : '';
+      const phoneVal = phoneInput ? phoneInput.value.trim() : '';
+      const brandVal = brandInput && brandInput.value ? brandInput.value : 'Water Purifier';
+      const issueVal = issueInput && issueInput.value ? issueInput.value : 'General Service';
+      const timeVal  = timeInput && timeInput.value ? timeInput.value : 'As soon as possible (30-60 min)';
 
-      if (!isNameValid || !isPhoneValid || !isBrandValid) {
+      if (!nameVal || nameVal.length < 2) {
+        nameInput?.focus();
+        nameInput?.classList.add('input-error');
         return;
       }
+      nameInput?.classList.remove('input-error');
 
-      const clientName = nameInput.value.trim();
-      const clientPhone = phoneInput.value.trim();
-      const clientBrand = brandInput.value;
-      const clientIssue = issueInput.value || 'General RO Service';
-      const clientTime = timeInput.value || 'Earliest Available (30-60 min)';
+      if (!phoneVal || !/^[6-9]\d{9}$/.test(phoneVal)) {
+        phoneInput?.focus();
+        phoneInput?.classList.add('input-error');
+        return;
+      }
+      phoneInput?.classList.remove('input-error');
 
-      // Prefilled WhatsApp message
-      const whatsappMsg = `Hi, I need RO service for my ${clientBrand}.\n` +
-        `• Name: ${clientName}\n` +
-        `• Phone: ${clientPhone}\n` +
-        `• Issue: ${clientIssue}\n` +
-        `• Preferred Time: ${clientTime}\n` +
-        `• Location: Visakhapatnam`;
+      const whatsappText =
+        `Hi HMT Aqua, I want to book RO service.\n\n` +
+        `• Name: ${nameVal}\n` +
+        `• Mobile: ${phoneVal}\n` +
+        `• Brand: ${brandVal}\n` +
+        `• Issue: ${issueVal}\n` +
+        `• Preferred Time: ${timeVal}\n` +
+        `• City: Visakhapatnam`;
 
-      const encodedMsg = encodeURIComponent(whatsappMsg);
-      const whatsappURL = `https://wa.me/919845331753?text=${encodedMsg}`;
+      const whatsappUrl = `https://wa.me/919845331753?text=${encodeURIComponent(whatsappText)}`;
+      window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
 
-      // Open WhatsApp in new tab
-      window.open(whatsappURL, '_blank', 'noopener,noreferrer');
-
-      // Trigger success animation
-      if (bookingFormWrap && bookingSuccessBox) {
-        bookingFormWrap.style.display = 'none';
-        bookingSuccessBox.classList.add('show');
+      if (formWrap && successBox) {
+        formWrap.hidden = true;
+        successBox.hidden = false;
         refreshIcons();
       }
     });
 
-    if (bookingResetBtn) {
-      bookingResetBtn.addEventListener('click', () => {
-        bookingForm.reset();
-        if (bookingFormWrap && bookingSuccessBox) {
-          bookingSuccessBox.classList.remove('show');
-          bookingFormWrap.style.display = 'block';
-        }
-      });
-    }
+    resetBtn?.addEventListener('click', e => {
+      e.preventDefault();
+      bookingForm.reset();
+      if (formWrap && successBox) {
+        successBox.hidden = true;
+        formWrap.hidden = false;
+      }
+    });
   }
 
-  // ── 10. FAQ Accordion ──
-  const faqButtons = document.querySelectorAll('.faq-question-btn');
+  /* ── 11. FAQ accordion ── */
+  const faqButtons = document.querySelectorAll('.faq-question');
   faqButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const item = btn.closest('.faq-item');
-      const panel = item?.querySelector('.faq-answer-panel');
-      const isOpen = item?.classList.contains('open');
+      const answer = item?.querySelector('.faq-answer');
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
 
-      // Close all other panels
-      document.querySelectorAll('.faq-item.open').forEach(openItem => {
-        openItem.classList.remove('open');
-        openItem.querySelector('.faq-answer-panel')?.classList.remove('open');
-        openItem.querySelector('.faq-question-btn')?.setAttribute('aria-expanded', 'false');
+      // Close all others
+      document.querySelectorAll('.faq-item').forEach(other => {
+        if (other !== item) {
+          other.classList.remove('faq-open');
+          const otherBtn = other.querySelector('.faq-question');
+          const otherAns = other.querySelector('.faq-answer');
+          otherBtn?.setAttribute('aria-expanded', 'false');
+          if (otherAns) otherAns.hidden = true;
+        }
       });
 
-      // Toggle current panel
-      if (!isOpen && item && panel) {
-        item.classList.add('open');
-        panel.classList.add('open');
+      // Toggle current
+      if (isExpanded) {
+        btn.setAttribute('aria-expanded', 'false');
+        item?.classList.remove('faq-open');
+        if (answer) answer.hidden = true;
+      } else {
         btn.setAttribute('aria-expanded', 'true');
+        item?.classList.add('faq-open');
+        if (answer) answer.hidden = false;
       }
     });
   });
 
-  // ── 11. SEO Collapsible ("Read More") ──
-  const seoToggleBtn = document.getElementById('seo-read-more-btn');
-  const seoBody = document.getElementById('seo-collapsible-content');
-  if (seoToggleBtn && seoBody) {
-    seoToggleBtn.addEventListener('click', () => {
-      const isExpanded = seoToggleBtn.getAttribute('aria-expanded') === 'true';
-      seoToggleBtn.setAttribute('aria-expanded', !isExpanded);
-      seoBody.classList.toggle('open');
-      const labelSpan = seoToggleBtn.querySelector('span');
-      if (labelSpan) {
-        labelSpan.textContent = !isExpanded
-          ? 'Show less about our Visakhapatnam services'
-          : 'Read more about our services in Visakhapatnam';
+  /* ── 12. SEO Collapsible "Read more" ── */
+  const seoToggle = document.getElementById('seo-toggle');
+  const seoContent = document.getElementById('seo-content');
+  if (seoToggle && seoContent) {
+    seoToggle.addEventListener('click', () => {
+      const expanded = seoToggle.getAttribute('aria-expanded') === 'true';
+      seoToggle.setAttribute('aria-expanded', String(!expanded));
+      seoContent.hidden = expanded;
+      const label = seoToggle.querySelector('span');
+      if (label) {
+        label.textContent = expanded
+          ? 'Read more about our service coverage'
+          : 'Show less about our service coverage';
       }
     });
   }
 
-  // ── 12. Lazy Load Google Maps Iframe ──
-  const mapPlaceholder = document.getElementById('map-placeholder-trigger');
-  const mapIframeHolder = document.getElementById('map-iframe-wrapper');
-  const contactSection = document.getElementById('contact');
-
-  function loadGoogleMap() {
-    if (!mapIframeHolder || mapIframeHolder.classList.contains('loaded')) return;
-    mapIframeHolder.classList.add('loaded');
-    if (mapPlaceholder) mapPlaceholder.style.display = 'none';
-
-    const iframe = mapIframeHolder.querySelector('iframe[data-src]');
-    if (iframe) {
-      iframe.src = iframe.getAttribute('data-src');
-      iframe.removeAttribute('data-src');
-    }
-  }
-
-  if (mapPlaceholder) {
-    mapPlaceholder.addEventListener('click', loadGoogleMap);
-  }
-
-  if (contactSection) {
-    const mapObserver = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        setTimeout(loadGoogleMap, 1000);
-        mapObserver.disconnect();
-      }
-    }, { threshold: 0.1 });
-    mapObserver.observe(contactSection);
-  }
-
-  // ── 13. Mobile Footer Collapsible Accordion ──
-  const footerAccordionButtons = document.querySelectorAll('.footer-col-title');
-  footerAccordionButtons.forEach(btn => {
+  /* ── 13. Mobile Footer Collapsible Columns ── */
+  const footerToggles = document.querySelectorAll('.footer-col-toggle');
+  footerToggles.forEach(btn => {
     btn.addEventListener('click', () => {
-      if (window.innerWidth <= 767) {
-        const parentCol = btn.closest('.footer-collapsible-col');
-        if (parentCol) {
-          parentCol.classList.toggle('open');
+      if (window.innerWidth <= 768) {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        const list = btn.nextElementSibling;
+        if (list) {
+          list.classList.toggle('footer-col-open', !expanded);
         }
       }
     });
   });
 
-  // ── 14. Smooth Hash Scrolling with Sticky Header Compensation ──
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+  /* ── 14. Smooth scroll with sticky header compensation ── */
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
       const hash = this.getAttribute('href');
       if (!hash || hash === '#') return;
-      const targetElement = document.querySelector(hash);
-      if (targetElement) {
+      const target = document.querySelector(hash);
+      if (target) {
         e.preventDefault();
-        const headerOffset = 76;
-        const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - headerOffset;
+        const offset = (header?.offsetHeight || 70) + 8;
         window.scrollTo({
-          top: targetPosition,
+          top: target.getBoundingClientRect().top + window.scrollY - offset,
           behavior: 'smooth'
         });
+        closeMenu();
       }
     });
   });
+
+  /* ── 15. Brand marquee hover/touch pause ── */
+  const marqueeTrack = document.querySelector('.marquee-track');
+  if (marqueeTrack) {
+    marqueeTrack.addEventListener('touchstart', () => marqueeTrack.style.animationPlayState = 'paused', { passive: true });
+    marqueeTrack.addEventListener('touchend', () => marqueeTrack.style.animationPlayState = 'running');
+  }
 });
