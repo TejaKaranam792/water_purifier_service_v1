@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 44" fill="none" role="img" aria-label="Aquaguard">
+    <g fill="#0066B2">
+      <path d="M22 8 C22 8 12 20 12 26 C12 31.5 16.5 36 22 36 C27.5 36 32 31.5 32 26 C32 20 22 8 22 8 Z" fill="#00A3E0"/>
+      <path d="M19 19 C19 19 15 24 15 28 C15 30.5 17 33 19.5 33 C18 31 17.5 28 19.5 23 Z" fill="#FFFFFF" opacity="0.7"/>
+      <text x="38" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="18" font-weight="800" fill="#0A3B73" letter-spacing="-0.4">Aquaguard</text>
+    </g>
+  </svg>

@@ -34,6 +34,9 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap"></noscript>
 
+  <!-- Preload Hero Image for Instant Visual Paint -->
+  <link rel="preload" as="image" href="assets/images/hero-photo.webp" type="image/webp" fetchpriority="high">
+
   <!-- Stylesheet -->
   <link rel="stylesheet" href="assets/css/styles.css">
 
@@ -278,7 +281,36 @@
       </div>
 
       <div class="container hero-grid">
-        <!-- Text Side -->
+        <!-- Hero Visual (Image First for High-Impact Visual Proof) -->
+        <div class="hero-image-side hero-image-wrap">
+          <div class="hero-glow" aria-hidden="true"></div>
+          <div class="hero-ripple-ring" aria-hidden="true"></div>
+          <div class="hero-card">
+            <picture>
+              <source srcset="assets/images/hero-photo.webp" type="image/webp">
+              <img
+                src="assets/images/hero-photo.webp"
+                alt="Expert RO water purifier technician servicing water purifier at doorstep in Visakhapatnam - HMT Aqua"
+                width="600"
+                height="600"
+                fetchpriority="high"
+                class="hero-img"
+              >
+            </picture>
+            <!-- Spring Badge Bottom Left -->
+            <div class="spring-badge badge-bl" aria-label="100% Satisfaction guaranteed">
+              <i data-lucide="award" aria-hidden="true"></i>
+              <span>100% Satisfaction</span>
+            </div>
+            <!-- Spring Badge Top Right -->
+            <div class="spring-badge badge-tr" aria-label="30 to 60 minute service">
+              <i data-lucide="zap" aria-hidden="true"></i>
+              <span>30-60 Min Service</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Matter Side (H1, Benefits, CTAs, Local Trust) -->
         <div class="hero-text hero-content">
           <!-- Badge -->
           <!-- TODO: confirm ISO certification claim before official audit -->
@@ -287,7 +319,7 @@
             ISO Certified · Doorstep Service
           </div>
 
-          <!-- H1 -->
+          <!-- H1 (Keyword Optimized for RO Water Purifier Service in Visakhapatnam) -->
           <h1 class="hero-h1">
             <span class="hero-line l1">RO Water Purifier Service</span>
             <span class="hero-line l2">in Visakhapatnam</span>
@@ -338,34 +370,6 @@
             <span class="trust-families">266+ Happy Vizag Families</span>
           </div>
         </div>
-
-        <!-- Image Side -->
-        <div class="hero-image-side hero-image-wrap">
-          <div class="hero-glow" aria-hidden="true"></div>
-          <div class="hero-card">
-            <picture>
-              <source srcset="assets/images/hero-photo.webp" type="image/webp">
-              <img
-                src="assets/images/hero_technician_ro_purifier.png"
-                alt="Expert RO water purifier technician in Visakhapatnam - HMT Aqua"
-                width="600"
-                height="600"
-                fetchpriority="high"
-                class="hero-img"
-              >
-            </picture>
-            <!-- Spring Badge Bottom Left -->
-            <div class="spring-badge badge-bl" aria-label="100% Satisfaction guaranteed">
-              <i data-lucide="award" aria-hidden="true"></i>
-              <span>100% Satisfaction</span>
-            </div>
-            <!-- Spring Badge Top Right -->
-            <div class="spring-badge badge-tr" aria-label="30 to 60 minute service">
-              <i data-lucide="zap" aria-hidden="true"></i>
-              <span>30-60 Min Service</span>
-            </div>
-          </div>
-        </div>
       </div>
 
       <!-- SVG Waves -->
@@ -409,77 +413,60 @@
         <div class="marquee-track">
           <!-- Set 1 (Primary for SEO and Screen Readers) -->
           <div class="marquee-item">
-            <img src="assets/images/brands/aquaguard.webp" alt="Aquaguard RO service Visakhapatnam" width="80" height="40" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
-            <span class="brand-text-chip">Aquaguard</span>
+            <img src="assets/images/brands/aquaguard.svg" alt="Aquaguard RO service Visakhapatnam" width="130" height="34" loading="lazy">
           </div>
           <div class="marquee-item">
-            <img src="assets/images/brands/kent.webp" alt="Kent RO service Visakhapatnam" width="80" height="40" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
-            <span class="brand-text-chip">Kent</span>
+            <img src="assets/images/brands/kent.svg" alt="Kent RO service Visakhapatnam" width="120" height="34" loading="lazy">
           </div>
           <div class="marquee-item">
-            <img src="assets/images/brands/ao-smith.webp" alt="AO Smith RO service Visakhapatnam" width="80" height="40" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
-            <span class="brand-text-chip">AO Smith</span>
+            <img src="assets/images/brands/ao-smith.svg" alt="AO Smith RO service Visakhapatnam" width="130" height="34" loading="lazy">
           </div>
           <div class="marquee-item">
-            <img src="assets/images/brands/pureit.webp" alt="Pureit RO service Visakhapatnam" width="80" height="40" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
-            <span class="brand-text-chip">Pureit</span>
+            <img src="assets/images/brands/pureit.svg" alt="Pureit RO service Visakhapatnam" width="120" height="34" loading="lazy">
           </div>
           <div class="marquee-item">
-            <img src="assets/images/brands/havells.webp" alt="Havells RO service Visakhapatnam" width="80" height="40" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
-            <span class="brand-text-chip">Havells</span>
+            <img src="assets/images/brands/havells.svg" alt="Havells RO service Visakhapatnam" width="125" height="34" loading="lazy">
           </div>
           <div class="marquee-item">
-            <img src="assets/images/brands/livpure.webp" alt="Livpure RO service Visakhapatnam" width="80" height="40" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
-            <span class="brand-text-chip">Livpure</span>
+            <img src="assets/images/brands/livpure.svg" alt="Livpure RO service Visakhapatnam" width="120" height="34" loading="lazy">
           </div>
           <div class="marquee-item">
-            <img src="assets/images/brands/lg.webp" alt="LG RO service Visakhapatnam" width="80" height="40" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
-            <span class="brand-text-chip">LG</span>
+            <img src="assets/images/brands/lg.svg" alt="LG RO service Visakhapatnam" width="105" height="34" loading="lazy">
           </div>
           <div class="marquee-item">
-            <img src="assets/images/brands/blue-star.webp" alt="Blue Star RO service Visakhapatnam" width="80" height="40" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
-            <span class="brand-text-chip">Blue Star</span>
+            <img src="assets/images/brands/blue-star.svg" alt="Blue Star RO service Visakhapatnam" width="135" height="34" loading="lazy">
           </div>
           <div class="marquee-item">
-            <img src="assets/images/brands/v-guard.webp" alt="V-Guard RO service Visakhapatnam" width="80" height="40" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
-            <span class="brand-text-chip">V-Guard</span>
+            <img src="assets/images/brands/v-guard.svg" alt="V-Guard RO service Visakhapatnam" width="125" height="34" loading="lazy">
           </div>
-          <!-- Set 2 (Duplicate for seamless loop, marked aria-hidden with alt="" to prevent duplicate screen reader announcements) -->
+
+          <!-- Set 2 (Duplicate for seamless infinite marquee loop, aria-hidden for screen readers) -->
           <div class="marquee-item" aria-hidden="true">
-            <img src="assets/images/brands/aquaguard.webp" alt="" width="80" height="40" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
-            <span class="brand-text-chip">Aquaguard</span>
-          </div>
-          <div class="marquee-item" aria-hidden="true">
-            <img src="assets/images/brands/kent.webp" alt="" width="80" height="40" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
-            <span class="brand-text-chip">Kent</span>
+            <img src="assets/images/brands/aquaguard.svg" alt="" width="130" height="34" loading="lazy">
           </div>
           <div class="marquee-item" aria-hidden="true">
-            <img src="assets/images/brands/ao-smith.webp" alt="" width="80" height="40" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
-            <span class="brand-text-chip">AO Smith</span>
+            <img src="assets/images/brands/kent.svg" alt="" width="120" height="34" loading="lazy">
           </div>
           <div class="marquee-item" aria-hidden="true">
-            <img src="assets/images/brands/pureit.webp" alt="" width="80" height="40" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
-            <span class="brand-text-chip">Pureit</span>
+            <img src="assets/images/brands/ao-smith.svg" alt="" width="130" height="34" loading="lazy">
           </div>
           <div class="marquee-item" aria-hidden="true">
-            <img src="assets/images/brands/havells.webp" alt="" width="80" height="40" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
-            <span class="brand-text-chip">Havells</span>
+            <img src="assets/images/brands/pureit.svg" alt="" width="120" height="34" loading="lazy">
           </div>
           <div class="marquee-item" aria-hidden="true">
-            <img src="assets/images/brands/livpure.webp" alt="" width="80" height="40" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
-            <span class="brand-text-chip">Livpure</span>
+            <img src="assets/images/brands/havells.svg" alt="" width="125" height="34" loading="lazy">
           </div>
           <div class="marquee-item" aria-hidden="true">
-            <img src="assets/images/brands/lg.webp" alt="" width="80" height="40" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
-            <span class="brand-text-chip">LG</span>
+            <img src="assets/images/brands/livpure.svg" alt="" width="120" height="34" loading="lazy">
           </div>
           <div class="marquee-item" aria-hidden="true">
-            <img src="assets/images/brands/blue-star.webp" alt="" width="80" height="40" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
-            <span class="brand-text-chip">Blue Star</span>
+            <img src="assets/images/brands/lg.svg" alt="" width="105" height="34" loading="lazy">
           </div>
           <div class="marquee-item" aria-hidden="true">
-            <img src="assets/images/brands/v-guard.webp" alt="" width="80" height="40" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">
-            <span class="brand-text-chip">V-Guard</span>
+            <img src="assets/images/brands/blue-star.svg" alt="" width="135" height="34" loading="lazy">
+          </div>
+          <div class="marquee-item" aria-hidden="true">
+            <img src="assets/images/brands/v-guard.svg" alt="" width="125" height="34" loading="lazy">
           </div>
         </div>
       </div>
@@ -515,8 +502,7 @@
                 <img src="assets/images/service-membrane.webp" alt="RO membrane replacement service in Visakhapatnam" width="400" height="300" loading="lazy" class="card-illustration">
               </div>
               <div class="card-logo-wrap">
-                <img src="assets/images/brands/aquaguard.webp" alt="Aquaguard water purifier service Visakhapatnam" width="120" height="60" loading="lazy" class="card-brand-logo" onerror="this.style.display='none';this.nextElementSibling.classList.add('brand-text-chip-visible')">
-                <span class="brand-text-chip">Aquaguard</span>
+                <img src="assets/images/brands/aquaguard.svg" alt="Aquaguard water purifier service Visakhapatnam" width="120" height="34" loading="lazy" class="card-brand-logo">
               </div>
               <h3 class="card-brand-name">Aquaguard Service</h3>
               <p class="card-tagline">Expert Aquaguard RO repair & maintenance</p>
@@ -535,8 +521,7 @@
                 <img src="assets/images/service-installation.webp" alt="UV lamp servicing and disinfection in Visakhapatnam" width="400" height="300" loading="lazy" class="card-illustration">
               </div>
               <div class="card-logo-wrap">
-                <img src="assets/images/brands/kent.webp" alt="Kent RO service Visakhapatnam" width="120" height="60" loading="lazy" class="card-brand-logo" onerror="this.style.display='none';this.nextElementSibling.classList.add('brand-text-chip-visible')">
-                <span class="brand-text-chip">Kent</span>
+                <img src="assets/images/brands/kent.svg" alt="Kent RO service Visakhapatnam" width="120" height="34" loading="lazy" class="card-brand-logo">
               </div>
               <h3 class="card-brand-name">Kent RO Service</h3>
               <p class="card-tagline">Complete Kent RO repair & filter service</p>
@@ -555,8 +540,7 @@
                 <img src="assets/images/service-tds.webp" alt="TDS testing and calibration in Visakhapatnam" width="400" height="300" loading="lazy" class="card-illustration">
               </div>
               <div class="card-logo-wrap">
-                <img src="assets/images/brands/ao-smith.webp" alt="AO Smith water purifier service Visakhapatnam" width="120" height="60" loading="lazy" class="card-brand-logo" onerror="this.style.display='none';this.nextElementSibling.classList.add('brand-text-chip-visible')">
-                <span class="brand-text-chip">AO Smith</span>
+                <img src="assets/images/brands/ao-smith.svg" alt="AO Smith water purifier service Visakhapatnam" width="120" height="34" loading="lazy" class="card-brand-logo">
               </div>
               <h3 class="card-brand-name">AO Smith Service</h3>
               <p class="card-tagline">Certified AO Smith RO repair & AMC</p>
@@ -575,8 +559,7 @@
                 <img src="assets/images/service-filters.webp" alt="Filter cartridge set replacement in Visakhapatnam" width="400" height="300" loading="lazy" class="card-illustration">
               </div>
               <div class="card-logo-wrap">
-                <img src="assets/images/brands/havells.webp" alt="Havells water purifier service Visakhapatnam" width="120" height="60" loading="lazy" class="card-brand-logo" onerror="this.style.display='none';this.nextElementSibling.classList.add('brand-text-chip-visible')">
-                <span class="brand-text-chip">Havells</span>
+                <img src="assets/images/brands/havells.svg" alt="Havells water purifier service Visakhapatnam" width="120" height="34" loading="lazy" class="card-brand-logo">
               </div>
               <h3 class="card-brand-name">Havells Service</h3>
               <p class="card-tagline">Expert Havells RO maintenance in Vizag</p>
@@ -595,8 +578,7 @@
                 <img src="assets/images/service-drinking.webp" alt="Safe and healthy drinking water for families in Visakhapatnam" width="400" height="300" loading="lazy" class="card-illustration">
               </div>
               <div class="card-logo-wrap">
-                <img src="assets/images/brands/pureit.webp" alt="Pureit RO service Visakhapatnam" width="120" height="60" loading="lazy" class="card-brand-logo" onerror="this.style.display='none';this.nextElementSibling.classList.add('brand-text-chip-visible')">
-                <span class="brand-text-chip">Pureit</span>
+                <img src="assets/images/brands/pureit.svg" alt="Pureit RO service Visakhapatnam" width="120" height="34" loading="lazy" class="card-brand-logo">
               </div>
               <h3 class="card-brand-name">Pureit Service</h3>
               <p class="card-tagline">Reliable Pureit RO filter & repair service</p>

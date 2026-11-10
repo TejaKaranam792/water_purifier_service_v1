@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135 44" fill="none" role="img" aria-label="Pureit">
+    <path d="M18 10 C25 10 30 15 30 22 C30 29 23 34 16 34 C13.5 34 11 33 9 32 C16 31 20 26 20 20 C20 15 17 12 18 10 Z" fill="#0055A5"/>
+    <text x="34" y="29" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="21" font-weight="800" fill="#0055A5" letter-spacing="-0.5">pureit</text>
+    <circle cx="85" cy="16" r="3" fill="#00A3E0"/>
+  </svg>

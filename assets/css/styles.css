@@ -737,7 +737,7 @@ input, select, textarea {
 
 @media (min-width: 900px) {
   .hero-grid {
-    grid-template-columns: 1.15fr 0.85fr;
+    grid-template-columns: 0.95fr 1.05fr;
     gap: var(--sp-8);
   }
 }
@@ -911,16 +911,55 @@ input, select, textarea {
   justify-content: center;
   align-items: center;
   opacity: 1;
+  width: 100%;
 }
 
 .hero-glow {
   position: absolute;
-  width: 120%;
-  height: 120%;
-  background: radial-gradient(circle, rgba(0, 180, 216, 0.32) 0%, rgba(10, 31, 68, 0) 68%);
-  filter: blur(36px);
+  width: 130%;
+  height: 130%;
+  background: radial-gradient(circle, rgba(0, 180, 216, 0.38) 0%, rgba(0, 77, 153, 0.22) 48%, rgba(10, 31, 68, 0) 70%);
+  filter: blur(38px);
   pointer-events: none;
   z-index: 1;
+  animation: pulseWaterGlow 4.5s ease-in-out infinite alternate;
+}
+
+@keyframes pulseWaterGlow {
+  0% {
+    transform: scale(0.94);
+    opacity: 0.65;
+  }
+  100% {
+    transform: scale(1.14);
+    opacity: 0.95;
+    filter: blur(48px);
+  }
+}
+
+.hero-ripple-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 104%;
+  height: 104%;
+  border-radius: calc(var(--radius-card) + 10px);
+  border: 2px solid rgba(0, 180, 216, 0.35);
+  pointer-events: none;
+  z-index: 1;
+  animation: rippleExpand 3.8s ease-out infinite;
+}
+
+@keyframes rippleExpand {
+  0% {
+    transform: translate(-50%, -50%) scale(0.96);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.18);
+    opacity: 0;
+  }
 }
 
 .hero-card {
@@ -930,25 +969,43 @@ input, select, textarea {
   overflow: visible;
   max-width: 440px;
   width: 100%;
+  animation: heroFloat3D 5.5s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.hero-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+@media (max-width: 899px) {
+  .hero-card {
+    max-width: 320px;
+    margin: 0 auto;
+  }
 }
 
 .hero-img {
   width: 100%;
   height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
   display: block;
   border-radius: var(--radius-card);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
-  border: 4px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(0, 180, 216, 0.25);
+  border: 4px solid rgba(255, 255, 255, 0.25);
   background-color: var(--navy-light);
-  animation: gentleFloat 4.5s ease-in-out infinite;
+  image-rendering: -webkit-optimize-contrast;
 }
 
-@keyframes gentleFloat {
+@keyframes heroFloat3D {
   0%, 100% {
-    transform: translateY(0);
+    transform: translateY(0px) rotate(0deg);
   }
-  50% {
-    transform: translateY(-8px);
+  30% {
+    transform: translateY(-10px) rotate(-0.5deg);
+  }
+  70% {
+    transform: translateY(-6px) rotate(0.6deg);
   }
 }
 
@@ -956,15 +1013,15 @@ input, select, textarea {
 .spring-badge {
   position: absolute;
   z-index: 5;
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: var(--radius-md);
-  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: var(--radius-pill);
+  padding: 10px 16px;
   display: flex;
   align-items: center;
   gap: 10px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25), 0 2px 8px rgba(0, 77, 153, 0.15);
   color: var(--navy);
   font-family: var(--font-heading);
   font-weight: 700;
@@ -974,7 +1031,7 @@ input, select, textarea {
 .badge-bl {
   bottom: -12px;
   left: -8px;
-  animation: springIn 0.7s 700ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation: springIn 0.7s 700ms cubic-bezier(0.34, 1.56, 0.64, 1) both, badgeBobble 3.8s 1.5s ease-in-out infinite;
 }
 
 .badge-bl i {
@@ -984,11 +1041,21 @@ input, select, textarea {
 .badge-tr {
   top: 14px;
   right: -8px;
-  animation: springIn 0.7s 850ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation: springIn 0.7s 850ms cubic-bezier(0.34, 1.56, 0.64, 1) both, badgeBobbleAlt 4.2s 1.5s ease-in-out infinite;
 }
 
 .badge-tr i {
   color: var(--primary);
+}
+
+@keyframes badgeBobble {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes badgeBobbleAlt {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
 }
 
 @keyframes springIn {
@@ -1163,9 +1230,10 @@ input, select, textarea {
 .marquee-track {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 20px;
   width: max-content;
-  animation: infiniteMarquee 26s linear infinite;
+  animation: infiniteMarquee 28s linear infinite;
+  padding: 6px 0;
 }
 
 .brands-section:hover .marquee-track {
@@ -1173,32 +1241,40 @@ input, select, textarea {
 }
 
 .marquee-item {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-family: var(--font-heading);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--text-muted);
+  justify-content: center;
+  padding: 8px 22px;
+  min-height: 48px;
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 77, 153, 0.12);
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(0, 31, 68, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.marquee-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 180, 216, 0.5);
+  box-shadow: 0 8px 20px rgba(0, 77, 153, 0.14);
 }
 
 .marquee-item img {
-  height: 40px;
+  height: 32px;
   width: auto;
-  max-width: 90px;
+  max-width: 140px;
   object-fit: contain;
-  filter: grayscale(1) opacity(0.7);
-  transition: filter var(--t-fast);
+  filter: grayscale(1) opacity(0.72);
+  transition: filter 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
+  display: block;
 }
 
 .marquee-item:hover img {
   filter: none;
   opacity: 1;
-}
-
-.marquee-item:hover span {
-  color: var(--primary);
+  transform: scale(1.02);
 }
 
 @keyframes infiniteMarquee {
@@ -2362,6 +2438,7 @@ input, select, textarea {
   object-fit: cover;
   display: block;
   transition: transform var(--t-base), filter var(--t-base);
+  image-rendering: -webkit-optimize-contrast;
 }
 
 .service-card:hover .card-illustration {
@@ -2400,18 +2477,22 @@ input, select, textarea {
   margin: 0 auto var(--sp-2);
   border-radius: var(--radius-card);
   overflow: hidden;
-  transition: transform var(--t-base);
+  box-shadow: 0 8px 24px rgba(0, 31, 68, 0.08);
+  border: 2px solid rgba(0, 77, 153, 0.08);
+  transition: transform var(--t-base), box-shadow var(--t-base);
 }
 
 .step-illustration {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 .step-box:hover .step-illustration-wrap {
   transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 12px 28px rgba(0, 77, 153, 0.16);
 }
 
 /* Section SVG Dividers */
@@ -2493,6 +2574,7 @@ input, select, textarea {
   object-fit: cover;
   object-position: center;
   pointer-events: none;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 .ba-tag {
