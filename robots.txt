@@ -2,11 +2,12 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://water-purifier-service.vercel.app/sitemap.xml
+Sitemap: https://waterpurifierservicev.vercel.app/sitemap.xml
 
-# Disallow admin/build artifacts
+# Disallow build artifacts and internal directories
 Disallow: /node_modules/
 Disallow: /.git/
 Disallow: /LICENSE
 Disallow: /README.md
-
+Disallow: /package.json
+Disallow: /package-lock.json

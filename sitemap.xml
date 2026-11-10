@@ -6,7 +6,7 @@
 
   <!-- Primary Homepage -->
   <url>
-    <loc>https://water-purifier-service.vercel.app/</loc>
+    <loc>https://waterpurifierservicev.vercel.app/</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -14,11 +14,10 @@
 
   <!-- Booking Page -->
   <url>
-    <loc>https://water-purifier-service.vercel.app/booking.html</loc>
+    <loc>https://waterpurifierservicev.vercel.app/booking.html</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
 </urlset>
-

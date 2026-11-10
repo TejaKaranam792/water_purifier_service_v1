@@ -746,6 +746,11 @@ input, select, textarea {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  opacity: 1;
+}
+
+.hero-content {
+  opacity: 1;
 }
 
 /* Badge Eyebrow */
@@ -764,7 +769,7 @@ input, select, textarea {
   padding: 6px 14px;
   border-radius: var(--radius-pill);
   margin-bottom: var(--sp-2);
-  animation: heroFadeSlide 0.6s ease forwards;
+  animation: heroFadeSlide 0.6s ease both;
 }
 
 /* H1 with line-by-line reveal */
@@ -784,11 +789,11 @@ input, select, textarea {
 }
 
 .hero-line.l1 {
-  animation: heroFadeSlide 0.65s 80ms ease forwards;
+  animation: heroFadeSlide 0.65s 80ms ease both;
 }
 
 .hero-line.l2 {
-  animation: heroFadeSlide 0.65s 160ms ease forwards;
+  animation: heroFadeSlide 0.65s 160ms ease both;
   color: #7FE5F6;
 }
 
@@ -800,7 +805,7 @@ input, select, textarea {
   max-width: 540px;
   opacity: 0;
   transform: translateY(14px);
-  animation: heroFadeSlide 0.65s 240ms ease forwards;
+  animation: heroFadeSlide 0.65s 240ms ease both;
 }
 
 /* 3 Tick Chips */
@@ -811,7 +816,7 @@ input, select, textarea {
   margin-bottom: var(--sp-4);
   opacity: 0;
   transform: translateY(14px);
-  animation: heroFadeSlide 0.65s 320ms ease forwards;
+  animation: heroFadeSlide 0.65s 320ms ease both;
 }
 
 .hero-chip {
@@ -845,7 +850,7 @@ input, select, textarea {
   width: 100%;
   opacity: 0;
   transform: translateY(14px);
-  animation: heroFadeSlide 0.65s 400ms ease forwards;
+  animation: heroFadeSlide 0.65s 400ms ease both;
 }
 
 .hero-ctas .btn {
@@ -863,7 +868,7 @@ input, select, textarea {
   border-radius: var(--radius-md);
   padding: 8px 14px;
   opacity: 0;
-  animation: heroFadeSlide 0.65s 480ms ease forwards;
+  animation: heroFadeSlide 0.65s 480ms ease both;
 }
 
 .google-letters {
@@ -905,6 +910,7 @@ input, select, textarea {
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 1;
 }
 
 .hero-glow {
@@ -968,7 +974,7 @@ input, select, textarea {
 .badge-bl {
   bottom: -12px;
   left: -8px;
-  animation: springIn 0.7s 700ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation: springIn 0.7s 700ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 .badge-bl i {
@@ -978,7 +984,7 @@ input, select, textarea {
 .badge-tr {
   top: 14px;
   right: -8px;
-  animation: springIn 0.7s 850ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation: springIn 0.7s 850ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 .badge-tr i {
@@ -1001,6 +1007,10 @@ input, select, textarea {
 }
 
 @keyframes heroFadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1174,9 +1184,9 @@ input, select, textarea {
 }
 
 .marquee-item img {
-  height: 36px;
+  height: 40px;
   width: auto;
-  max-width: 80px;
+  max-width: 90px;
   object-fit: contain;
   filter: grayscale(1) opacity(0.7);
   transition: filter var(--t-fast);
@@ -2256,7 +2266,8 @@ input, select, textarea {
 }
 
 /* ── 20. MOBILE STICKY ACTION BAR ──────────────────────────────────────── */
-.mobile-sticky-bar {
+.mobile-sticky-bar,
+.mobile-sticky-action-bar {
   display: flex;
   position: fixed;
   bottom: 0;
@@ -2271,12 +2282,20 @@ input, select, textarea {
 }
 
 @media (min-width: 769px) {
-  .mobile-sticky-bar {
+  .mobile-sticky-bar,
+  .mobile-sticky-action-bar {
     display: none !important;
   }
 }
 
-.sticky-btn {
+.sticky-action-inner {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.sticky-btn,
+.sticky-action-item {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -2291,21 +2310,25 @@ input, select, textarea {
   transition: background-color var(--t-fast);
 }
 
-.sticky-btn i {
+.sticky-btn i,
+.sticky-action-item i {
   width: 18px;
   height: 18px;
 }
 
-.sticky-call {
+.sticky-call,
+.sticky-action-item.call {
   color: var(--primary);
 }
 
-.sticky-book {
+.sticky-book,
+.sticky-action-item.book {
   background: var(--cta-orange-g);
   color: #FFFFFF;
 }
 
-.sticky-whatsapp {
+.sticky-whatsapp,
+.sticky-action-item.whatsapp {
   color: var(--wa-green);
 }
 

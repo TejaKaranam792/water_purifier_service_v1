@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ── 6. Count-up animation for stats ── */
-  const statNumbers = document.querySelectorAll('.stat-number[data-count]');
+  const statNumbers = document.querySelectorAll('.stat-number[data-target], .stat-number[data-count]');
   if (statNumbers.length) {
     function animateCount(el, target, suffix, duration = 1600) {
       const isFloat = String(target).includes('.');
@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         el.textContent = (isFloat ? target.toFixed(1) : target.toLocaleString()) + suffix;
         return;
       }
+      el.textContent = (isFloat ? '0.0' : '0') + suffix;
       const start = performance.now();
       (function update(now) {
         const p = Math.min((now - start) / duration, 1);
@@ -103,9 +104,11 @@ document.addEventListener('DOMContentLoaded', () => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const el = entry.target;
-          const raw = el.dataset.count;
+          const raw = el.dataset.target || el.dataset.count || '';
           const target = raw.includes('.') ? parseFloat(raw) : parseInt(raw, 10);
-          animateCount(el, target, el.dataset.suffix || '');
+          if (!isNaN(target)) {
+            animateCount(el, target, el.dataset.suffix || '');
+          }
           statsObs.unobserve(el);
         }
       });
