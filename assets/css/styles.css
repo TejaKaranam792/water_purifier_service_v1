@@ -1358,10 +1358,37 @@ input, select, textarea {
   border-radius: var(--radius-pill);
 }
 
-.card-logo-wrap {
-  height: 70px;
+.card-brand-thumb-wrap {
+  width: 100%;
+  height: 160px;
+  background: #F8FAFC;
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin-bottom: var(--sp-2);
+  overflow: hidden;
+  border: 1px solid rgba(0, 77, 153, 0.08);
+}
+
+.card-brand-thumb {
+  max-height: 140px;
+  max-width: 90%;
+  width: auto;
+  object-fit: contain;
+  transition: transform var(--t-base);
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.service-card:hover .card-brand-thumb {
+  transform: scale(1.05);
+}
+
+.card-logo-wrap {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: var(--sp-2);
 }
 
@@ -1433,6 +1460,130 @@ input, select, textarea {
 
 .card-cta {
   width: 100%;
+}
+
+/* ── 11B. CORE SERVICES & SOLUTIONS SECTION ──────────────────────────── */
+.solutions-section {
+  padding: var(--sp-6) 0;
+  background-color: #FFFFFF;
+}
+
+.solutions-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-3);
+  margin-top: var(--sp-3);
+}
+
+@media (min-width: 640px) {
+  .solutions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .solutions-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--sp-4);
+  }
+}
+
+.solution-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--t-base), box-shadow var(--t-base), border-color var(--t-base);
+}
+
+.solution-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(0, 77, 153, 0.25);
+}
+
+.solution-media {
+  width: 100%;
+  height: 210px;
+  overflow: hidden;
+  position: relative;
+  background: var(--bg-alt);
+}
+
+.solution-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--t-base);
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.solution-card:hover .solution-media img {
+  transform: scale(1.05);
+}
+
+.solution-body {
+  padding: var(--sp-3);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.solution-badge {
+  display: inline-block;
+  background-color: var(--primary-tint);
+  color: var(--primary);
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 0.8125rem;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--sp-1);
+  width: fit-content;
+}
+
+.solution-title {
+  font-size: 1.1875rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.solution-desc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: var(--sp-2);
+}
+
+.solution-bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.8125rem;
+  color: var(--text-main);
+  margin-bottom: var(--sp-3);
+  flex: 1;
+}
+
+.solution-bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  line-height: 1.4;
+}
+
+.solution-bullets i {
+  color: var(--mint);
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin-top: 2px;
 }
 
 /* Carousel Dots */
