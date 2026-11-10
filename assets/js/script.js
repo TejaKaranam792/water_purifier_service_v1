@@ -353,7 +353,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const rect = baContainer.getBoundingClientRect();
       const pos = Math.max(0, Math.min(clientX - rect.left, rect.width));
       const pct = Math.max(0, Math.min((pos / rect.width) * 100, 100));
-      baBeforeLayer.style.width = pct + '%';
+      baBeforeLayer.style.clipPath = `polygon(0 0, ${pct}% 0, ${pct}% 100%, 0 100%)`;
+      baBeforeLayer.style.webkitClipPath = `polygon(0 0, ${pct}% 0, ${pct}% 100%, 0 100%)`;
       baHandle.style.left = pct + '%';
       baHandle.setAttribute('aria-valuenow', Math.round(pct));
       baHandle.setAttribute('aria-valuetext', `${Math.round(pct)}% before filter comparison`);
@@ -405,7 +406,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function setSliderPct(pct) {
-      baBeforeLayer.style.width = pct + '%';
+      baBeforeLayer.style.clipPath = `polygon(0 0, ${pct}% 0, ${pct}% 100%, 0 100%)`;
+      baBeforeLayer.style.webkitClipPath = `polygon(0 0, ${pct}% 0, ${pct}% 100%, 0 100%)`;
       baHandle.style.left = pct + '%';
       baHandle.setAttribute('aria-valuenow', Math.round(pct));
       baHandle.setAttribute('aria-valuetext', `${Math.round(pct)}% before filter comparison`);
