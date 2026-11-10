@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%" role="img" aria-labelledby="sf-title sf-desc">
+  <title id="sf-title">RO Filter Cartridge Set Replacement in Visakhapatnam</title>
+  <desc id="sf-desc">Complete set of water purifier filters: sediment spun filter, carbon block, and mineralizer cartridge.</desc>
+  <defs>
+    <linearGradient id="sfBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2F9FD"/>
+      <stop offset="100%" stop-color="#E5F3FC"/>
+    </linearGradient>
+    <linearGradient id="sedimentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="50%" stop-color="#EDF5FD"/>
+      <stop offset="100%" stop-color="#D1E6F9"/>
+    </linearGradient>
+    <linearGradient id="carbonGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2D3748"/>
+      <stop offset="50%" stop-color="#1A202C"/>
+      <stop offset="100%" stop-color="#0D131F"/>
+    </linearGradient>
+    <linearGradient id="alkalineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00B4D8"/>
+      <stop offset="50%" stop-color="#0077B6"/>
+      <stop offset="100%" stop-color="#004D99"/>
+    </linearGradient>
+    <filter id="sfShadow" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#00254D" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <style>
+    .sf-float { animation: sfFloat 3.5s ease-in-out infinite alternate; }
+    .sf-bubble { animation: sfBubble 2.5s ease-in infinite; }
+    @keyframes sfFloat {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-6px); }
+    }
+    @keyframes sfBubble {
+      0% { transform: translateY(10px); opacity: 0; }
+      50% { opacity: 0.8; }
+      100% { transform: translateY(-20px); opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .sf-float, .sf-bubble { animation: none !important; }
+    }
+  </style>
+
+  <!-- Background Card -->
+  <rect width="400" height="300" rx="16" fill="url(#sfBg)"/>
+  <circle cx="200" cy="150" r="110" fill="#00B4D8" fill-opacity="0.1"/>
+
+  <!-- Trio of Filter Cartridges -->
+  <g class="sf-float">
+    <!-- Filter 1 (Left): 5-Micron Spun Sediment Filter -->
+    <g filter="url(#sfShadow)" transform="translate(80, 55)">
+      <!-- Top Cap -->
+      <rect x="0" y="0" width="60" height="16" rx="5" fill="#0077B6"/>
+      <rect x="20" y="-8" width="20" height="10" rx="3" fill="#0096C7"/>
+      <!-- Body -->
+      <rect x="4" y="14" width="52" height="155" rx="4" fill="url(#sedimentGrad)" stroke="#BEDAF5" stroke-width="1.5"/>
+      <!-- Meltblown Spun Grooves Texture -->
+      <line x1="8" y1="35" x2="52" y2="35" stroke="#C3DFF8" stroke-width="2"/>
+      <line x1="8" y1="60" x2="52" y2="60" stroke="#C3DFF8" stroke-width="2"/>
+      <line x1="8" y1="85" x2="52" y2="85" stroke="#C3DFF8" stroke-width="2"/>
+      <line x1="8" y1="110" x2="52" y2="110" stroke="#C3DFF8" stroke-width="2"/>
+      <line x1="8" y1="135" x2="52" y2="135" stroke="#C3DFF8" stroke-width="2"/>
+      <!-- Bottom Cap -->
+      <rect x="0" y="167" width="60" height="16" rx="5" fill="#0077B6"/>
+      <rect x="20" y="181" width="20" height="8" rx="3" fill="#0096C7"/>
+      <!-- Stage Label -->
+      <text x="30" y="196" fill="#0077B6" font-family="'Inter',sans-serif" font-size="9" font-weight="700" text-anchor="middle">SEDIMENT</text>
+    </g>
+
+    <!-- Filter 2 (Center): Activated Carbon Block Filter -->
+    <g filter="url(#sfShadow)" transform="translate(170, 45)">
+      <!-- Top Cap -->
+      <rect x="0" y="0" width="60" height="16" rx="5" fill="#0A1F44"/>
+      <rect x="20" y="-8" width="20" height="10" rx="3" fill="#004D99"/>
+      <!-- Carbon Body -->
+      <rect x="4" y="14" width="52" height="165" rx="4" fill="url(#carbonGrad)" stroke="#4A5568" stroke-width="1.5"/>
+      <!-- Inner core mesh wrap -->
+      <rect x="12" y="30" width="36" height="130" rx="3" fill="#171923" stroke="#2D3748" stroke-dasharray="2 3"/>
+      <!-- Carbon Label Badge on Filter -->
+      <rect x="8" y="75" width="44" height="24" rx="4" fill="#004D99"/>
+      <text x="30" y="90" fill="#FFFFFF" font-family="'Inter',sans-serif" font-size="8" font-weight="800" text-anchor="middle">CARBON</text>
+      <!-- Bottom Cap -->
+      <rect x="0" y="177" width="60" height="16" rx="5" fill="#0A1F44"/>
+      <rect x="20" y="191" width="20" height="8" rx="3" fill="#004D99"/>
+      <!-- Stage Label -->
+      <text x="30" y="206" fill="#0A1F44" font-family="'Inter',sans-serif" font-size="9" font-weight="700" text-anchor="middle">PRE-CARBON</text>
+    </g>
+
+    <!-- Filter 3 (Right): Alkaline Mineralizer / Post-Carbon Cartridge -->
+    <g filter="url(#sfShadow)" transform="translate(260, 55)">
+      <!-- Top Cap with Push-Fit Quick Connector -->
+      <rect x="0" y="0" width="60" height="16" rx="5" fill="#00B4D8"/>
+      <rect x="20" y="-8" width="20" height="10" rx="3" fill="#48CAE4"/>
+      <!-- Alkaline Mineral Body -->
+      <rect x="4" y="14" width="52" height="155" rx="4" fill="url(#alkalineGrad)" stroke="#7FE5F6" stroke-width="1.5"/>
+      <!-- Mineral Granules Window Cutaway -->
+      <rect x="14" y="45" width="32" height="85" rx="16" fill="#003566" stroke="#90E0EF" stroke-width="1.5"/>
+      <circle cx="24" cy="62" r="3" fill="#FFB703"/>
+      <circle cx="34" cy="74" r="3.5" fill="#2EC4B6"/>
+      <circle cx="25" cy="88" r="3" fill="#FFFFFF"/>
+      <circle cx="35" cy="102" r="3.5" fill="#FF8A00"/>
+      <circle cx="26" cy="114" r="2.5" fill="#2EC4B6"/>
+      <!-- Bottom Cap -->
+      <rect x="0" y="167" width="60" height="16" rx="5" fill="#00B4D8"/>
+      <rect x="20" y="181" width="20" height="8" rx="3" fill="#48CAE4"/>
+      <!-- Stage Label -->
+      <text x="30" y="196" fill="#00B4D8" font-family="'Inter',sans-serif" font-size="9" font-weight="700" text-anchor="middle">ALKALINE</text>
+    </g>
+  </g>
+
+  <!-- 100% Genuine Spare Parts Guarantee Badge -->
+  <g transform="translate(130, 240)" filter="url(#sfShadow)">
+    <rect x="0" y="0" width="140" height="34" rx="17" fill="#0A1F44" stroke="#00B4D8" stroke-width="1.5"/>
+    <circle cx="17" cy="17" r="10" fill="#2EC4B6"/>
+    <path d="M 13,17 L 16,20 L 22,14" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <text x="34" y="21" fill="#FFFFFF" font-family="'Inter',sans-serif" font-size="10" font-weight="700">100% GENUINE</text>
+  </g>
+
+  <!-- Clean Floating Water Drops -->
+  <ellipse cx="60" cy="90" rx="3" ry="5" fill="#00B4D8" class="sf-bubble"/>
+  <ellipse cx="345" cy="85" rx="3.5" ry="6" fill="#2EC4B6" class="sf-bubble" style="animation-delay:1.2s"/>
+</svg>

@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%" role="img" aria-labelledby="sdoor-title sdoor-desc">
+  <title id="sdoor-title">Doorstep RO Water Purifier Service in Visakhapatnam</title>
+  <desc id="sdoor-desc">Certified technician with professional toolkit arriving at your doorstep in Visakhapatnam in 30-60 minutes.</desc>
+  <defs>
+    <linearGradient id="sdoorBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2F9FD"/>
+      <stop offset="100%" stop-color="#E2EEFC"/>
+    </linearGradient>
+    <linearGradient id="doorFrame" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0F2852"/>
+      <stop offset="100%" stop-color="#061633"/>
+    </linearGradient>
+    <linearGradient id="doorPanel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#E3EFFC"/>
+    </linearGradient>
+    <linearGradient id="techBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0066CC"/>
+      <stop offset="70%" stop-color="#004D99"/>
+      <stop offset="100%" stop-color="#0A1F44"/>
+    </linearGradient>
+    <linearGradient id="skinGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D99B5E"/>
+      <stop offset="100%" stop-color="#A5672A"/>
+    </linearGradient>
+    <linearGradient id="toolBox" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E63946"/>
+      <stop offset="100%" stop-color="#BA181B"/>
+    </linearGradient>
+    <filter id="sdoorShadow" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#001838" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <style>
+    .door-wave { animation: doorWave 3.5s ease-in-out infinite; }
+    @keyframes doorWave {
+      0%, 100% { transform: rotate(0deg); transform-origin: 260px 145px; }
+      20% { transform: rotate(-8deg); transform-origin: 260px 145px; }
+      40% { transform: rotate(4deg); transform-origin: 260px 145px; }
+      60% { transform: rotate(-6deg); transform-origin: 260px 145px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .door-wave { animation: none !important; }
+    }
+  </style>
+
+  <!-- Background Card -->
+  <rect width="400" height="300" rx="16" fill="url(#sdoorBg)"/>
+  <circle cx="200" cy="150" r="110" fill="#00B4D8" fill-opacity="0.1"/>
+
+  <!-- Modern House Doorway (Left/Center) -->
+  <g id="house-doorway" filter="url(#sdoorShadow)" transform="translate(60, 45)">
+    <!-- Door Frame Surround -->
+    <rect x="0" y="0" width="150" height="205" rx="12" fill="url(#doorFrame)"/>
+    
+    <!-- Door Leaf (Slightly Ajar) -->
+    <rect x="8" y="8" width="134" height="192" rx="6" fill="url(#doorPanel)" stroke="#CBD5E1" stroke-width="2"/>
+    
+    <!-- Modern Door Panels (Glass Light Inserts) -->
+    <rect x="22" y="24" width="106" height="42" rx="4" fill="#BEE3F8" fill-opacity="0.5" stroke="#90CDF4" stroke-width="1.5"/>
+    <rect x="22" y="78" width="106" height="42" rx="4" fill="#BEE3F8" fill-opacity="0.5" stroke="#90CDF4" stroke-width="1.5"/>
+    <rect x="22" y="132" width="106" height="42" rx="4" fill="#BEE3F8" fill-opacity="0.5" stroke="#90CDF4" stroke-width="1.5"/>
+
+    <!-- Chrome Door Handle -->
+    <rect x="18" y="98" width="6" height="26" rx="3" fill="#64748B"/>
+    <circle cx="21" cy="98" r="4" fill="#94A3B8"/>
+
+    <!-- Welcome Mat at Threshold -->
+    <rect x="-10" y="196" width="170" height="12" rx="4" fill="#004D99"/>
+    <text x="75" y="205" fill="#FFFFFF" font-family="'Inter',sans-serif" font-size="7" font-weight="800" text-anchor="middle" letter-spacing="1">WELCOME</text>
+  </g>
+
+  <!-- Technician at Doorstep (Right Center) -->
+  <g id="doorstep-technician" filter="url(#sdoorShadow)" transform="translate(205, 55)">
+    <!-- Base Shadow -->
+    <ellipse cx="65" cy="190" rx="48" ry="10" fill="#001838" opacity="0.3"/>
+
+    <!-- Uniform Trousers -->
+    <path d="M 45,150 L 42,192 L 58,192 L 62,150 Z" fill="#0A1F44"/>
+    <path d="M 68,150 L 72,192 L 88,192 L 85,150 Z" fill="#0A1F44"/>
+    <!-- Shoes -->
+    <ellipse cx="48" cy="192" rx="10" ry="4" fill="#1E293B"/>
+    <ellipse cx="82" cy="192" rx="10" ry="4" fill="#1E293B"/>
+
+    <!-- Navy Uniform Shirt Torso -->
+    <path d="M 34,92 L 28,152 L 102,152 L 96,92 Z" fill="url(#techBody)"/>
+    <rect x="42" y="104" width="22" height="15" rx="3" fill="#0A1F44" stroke="#00B4D8" stroke-width="1"/>
+    <rect x="45" y="108" width="16" height="4" rx="1" fill="#2EC4B6"/>
+
+    <!-- Head & Cap -->
+    <circle cx="65" cy="62" r="15" fill="url(#skinGrad2)"/>
+    <!-- Smile & Eyes -->
+    <circle cx="59" cy="62" r="2" fill="#1A1A1A"/>
+    <circle cx="71" cy="62" r="2" fill="#1A1A1A"/>
+    <path d="M 60,69 Q 65,74 70,69" stroke="#781D1D" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+    <!-- Cap -->
+    <path d="M 48,58 C 48,40 82,40 82,58 Z" fill="#0A1F44"/>
+    <path d="M 45,58 Q 65,52 85,58" stroke="#00B4D8" stroke-width="2.5" fill="none"/>
+    <circle cx="65" cy="48" r="2.5" fill="#00B4D8"/>
+
+    <!-- Left Arm Holding Service Toolbox -->
+    <path d="M 32,96 L 16,134 L 26,138 L 42,100 Z" fill="url(#techBody)"/>
+    <ellipse cx="20" cy="138" rx="6" ry="6" fill="url(#skinGrad2)"/>
+
+    <!-- Professional Service Toolbox -->
+    <g transform="translate(-10, 134)" filter="url(#sdoorShadow)">
+      <rect x="6" y="10" width="48" height="34" rx="6" fill="url(#toolBox)"/>
+      <rect x="4" y="8" width="52" height="8" rx="3" fill="#BA181B"/>
+      <!-- Chrome Latches & Handle -->
+      <rect x="22" y="2" width="16" height="7" rx="3" fill="#CBD5E1"/>
+      <rect x="16" y="16" width="6" height="8" rx="2" fill="#CBD5E1"/>
+      <rect x="38" y="16" width="6" height="8" rx="2" fill="#CBD5E1"/>
+      <!-- HMT Aqua Service Cross Emblem -->
+      <circle cx="30" cy="28" r="7" fill="#FFFFFF"/>
+      <path d="M 27,28 L 33,28 M 30,25 L 30,31" stroke="#E63946" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+
+    <!-- Right Arm Waving Friendly Greeting -->
+    <g class="door-wave">
+      <path d="M 96,96 L 118,124 L 110,132 L 88,104 Z" fill="url(#techBody)"/>
+      <ellipse cx="118" cy="126" rx="6" ry="6" fill="url(#skinGrad2)"/>
+    </g>
+  </g>
+
+  <!-- 30-60 Min Quick Dispatch Badge (Bottom Right) -->
+  <g transform="translate(230, 236)" filter="url(#sdoorShadow)">
+    <rect x="0" y="0" width="145" height="36" rx="18" fill="#FF8A00"/>
+    <circle cx="18" cy="18" r="11" fill="#FFFFFF"/>
+    <!-- Clock inside -->
+    <circle cx="18" cy="18" r="8" fill="none" stroke="#FF8A00" stroke-width="1.8"/>
+    <polyline points="18,14 18,18 21,19" fill="none" stroke="#FF8A00" stroke-width="1.8" stroke-linecap="round"/>
+    <text x="36" y="22" fill="#FFFFFF" font-family="'Inter',sans-serif" font-size="11" font-weight="800">30-60 MIN ARRIVAL</text>
+  </g>
+</svg>

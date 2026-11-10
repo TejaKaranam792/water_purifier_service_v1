@@ -340,4 +340,75 @@ document.addEventListener('DOMContentLoaded', () => {
     marqueeTrack.addEventListener('touchstart', () => marqueeTrack.style.animationPlayState = 'paused', { passive: true });
     marqueeTrack.addEventListener('touchend', () => marqueeTrack.style.animationPlayState = 'running');
   }
+
+  /* ── 16. Before / After Filter Comparison Slider ── */
+  const baContainer = document.getElementById('ba-comparison-slider');
+  const baBeforeLayer = document.getElementById('ba-before-layer');
+  const baHandle = document.getElementById('ba-handle');
+
+  if (baContainer && baBeforeLayer && baHandle) {
+    let isDragging = false;
+
+    function setSliderPos(clientX) {
+      const rect = baContainer.getBoundingClientRect();
+      const pos = Math.max(0, Math.min(clientX - rect.left, rect.width));
+      const pct = Math.max(0, Math.min((pos / rect.width) * 100, 100));
+      baBeforeLayer.style.width = pct + '%';
+      baHandle.style.left = pct + '%';
+      baHandle.setAttribute('aria-valuenow', Math.round(pct));
+      baHandle.setAttribute('aria-valuetext', `${Math.round(pct)}% before filter comparison`);
+    }
+
+    baHandle.addEventListener('pointerdown', e => {
+      isDragging = true;
+      baHandle.setPointerCapture(e.pointerId);
+      e.preventDefault();
+    });
+
+    baHandle.addEventListener('pointermove', e => {
+      if (!isDragging) return;
+      setSliderPos(e.clientX);
+    });
+
+    baHandle.addEventListener('pointerup', e => {
+      isDragging = false;
+      try { baHandle.releasePointerCapture(e.pointerId); } catch (_) {}
+    });
+
+    baHandle.addEventListener('pointercancel', () => {
+      isDragging = false;
+    });
+
+    // Click anywhere on container to move handle
+    baContainer.addEventListener('click', e => {
+      setSliderPos(e.clientX);
+    });
+
+    // Keyboard accessibility
+    baHandle.addEventListener('keydown', e => {
+      let cur = parseFloat(baHandle.getAttribute('aria-valuenow') || '50');
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
+        cur = Math.max(0, cur - 5);
+        setSliderPct(cur);
+        e.preventDefault();
+      } else if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
+        cur = Math.min(100, cur + 5);
+        setSliderPct(cur);
+        e.preventDefault();
+      } else if (e.key === 'Home') {
+        setSliderPct(0);
+        e.preventDefault();
+      } else if (e.key === 'End') {
+        setSliderPct(100);
+        e.preventDefault();
+      }
+    });
+
+    function setSliderPct(pct) {
+      baBeforeLayer.style.width = pct + '%';
+      baHandle.style.left = pct + '%';
+      baHandle.setAttribute('aria-valuenow', Math.round(pct));
+      baHandle.setAttribute('aria-valuetext', `${Math.round(pct)}% before filter comparison`);
+    }
+  }
 });

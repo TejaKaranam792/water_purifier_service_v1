@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%" role="img" aria-labelledby="st-title st-desc">
+  <title id="st-title">TDS Level Water Testing & Tuning in Visakhapatnam</title>
+  <desc id="st-desc">Digital TDS meter measuring water purity level showing optimal 45 PPM drinking quality with ripples.</desc>
+  <defs>
+    <linearGradient id="stBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2F9FD"/>
+      <stop offset="100%" stop-color="#E2F1FB"/>
+    </linearGradient>
+    <linearGradient id="meterBody" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0066CC"/>
+      <stop offset="50%" stop-color="#004D99"/>
+      <stop offset="100%" stop-color="#0A1F44"/>
+    </linearGradient>
+    <linearGradient id="glassGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.6"/>
+      <stop offset="30%" stop-color="#FFFFFF" stop-opacity="0.15"/>
+      <stop offset="70%" stop-color="#BEE3F8" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.5"/>
+    </linearGradient>
+    <linearGradient id="pureWater" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#48CAE4" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0096C7" stop-opacity="0.9"/>
+    </linearGradient>
+    <filter id="stShadow" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#002244" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  <style>
+    .st-ripple { animation: stRipple 3s ease-out infinite; }
+    .st-glow { animation: stGlow 2.5s ease-in-out infinite alternate; }
+    @keyframes stRipple {
+      0% { r: 12px; opacity: 0.9; }
+      100% { r: 38px; opacity: 0; }
+    }
+    @keyframes stGlow {
+      0% { filter: drop-shadow(0 0 2px #2EC4B6); }
+      100% { filter: drop-shadow(0 0 8px #2EC4B6); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .st-ripple, .st-glow { animation: none !important; }
+    }
+  </style>
+
+  <!-- Background Card -->
+  <rect width="400" height="300" rx="16" fill="url(#stBg)"/>
+  <circle cx="200" cy="150" r="115" fill="#00B4D8" fill-opacity="0.1"/>
+
+  <!-- Lab Beaker / Glass of Water (Right Center) -->
+  <g filter="url(#stShadow)" transform="translate(180, 80)">
+    <!-- Base Shadow -->
+    <ellipse cx="65" cy="188" rx="60" ry="12" fill="#001838" opacity="0.25"/>
+
+    <!-- Glass Body Outline -->
+    <path d="M 12,25 L 22,175 Q 24,185 36,185 L 94,185 Q 106,185 108,175 L 118,25 Z" fill="url(#glassGrad)" stroke="#BEE3F8" stroke-width="2.5"/>
+
+    <!-- Pure Water Layer Inside Glass -->
+    <path d="M 17,70 Q 65,65 113,70 L 106,174 Q 104,181 94,181 L 36,181 Q 26,181 24,174 Z" fill="url(#pureWater)"/>
+    
+    <!-- Water Level Top Ellipse -->
+    <ellipse cx="65" cy="70" rx="48" ry="10" fill="#90E0EF"/>
+
+    <!-- Ripple circles where TDS probe enters -->
+    <ellipse cx="48" cy="70" rx="16" ry="4" stroke="#FFFFFF" stroke-width="1.8" fill="none" opacity="0.8"/>
+    <ellipse cx="48" cy="70" rx="28" ry="6" stroke="#FFFFFF" stroke-width="1.2" fill="none" opacity="0.4"/>
+
+    <!-- Glass Volume Graduations -->
+    <line x1="28" y1="100" x2="42" y2="100" stroke="#FFFFFF" stroke-width="2" opacity="0.7"/>
+    <line x1="26" y1="125" x2="44" y2="125" stroke="#FFFFFF" stroke-width="2" opacity="0.7"/>
+    <line x1="24" y1="150" x2="42" y2="150" stroke="#FFFFFF" stroke-width="2" opacity="0.7"/>
+
+    <!-- Glass Highlight Glare -->
+    <path d="M 22,40 L 30,165" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+  </g>
+
+  <!-- Digital Handheld TDS Meter Dipping into Water -->
+  <g filter="url(#stShadow)" transform="translate(130, 20) rotate(-16)">
+    <!-- Main Pen Body -->
+    <rect x="70" y="20" width="46" height="185" rx="14" fill="url(#meterBody)" stroke="#0E3266" stroke-width="2"/>
+
+    <!-- Top Cap with Lanyard Loop -->
+    <rect x="76" y="10" width="34" height="14" rx="4" fill="#0A1F44"/>
+    <path d="M 88,10 Q 93,4 98,10" stroke="#00B4D8" stroke-width="3" fill="none"/>
+
+    <!-- LCD Digital Display Window -->
+    <rect x="77" y="46" width="32" height="42" rx="4" fill="#0A1F44" stroke="#00B4D8" stroke-width="1.5"/>
+    <rect x="79" y="48" width="28" height="38" rx="3" fill="#05142E"/>
+    
+    <!-- Digital 45 PPM Readout -->
+    <g class="st-glow">
+      <text x="93" y="70" fill="#2EC4B6" font-family="'Courier New',monospace" font-size="16" font-weight="900" text-anchor="middle">45</text>
+      <text x="93" y="82" fill="#00B4D8" font-family="'Inter',sans-serif" font-size="8" font-weight="700" text-anchor="middle">PPM</text>
+    </g>
+
+    <!-- Operational Buttons (Hold, Temp, Power) -->
+    <circle cx="93" cy="102" r="4.5" fill="#FF8A00"/>
+    <circle cx="93" cy="116" r="4" fill="#00B4D8"/>
+    <circle cx="93" cy="128" r="4" fill="#7FE5F6"/>
+
+    <!-- Ergonomic Grip Ridges -->
+    <line x1="72" y1="144" x2="72" y2="160" stroke="#00B4D8" stroke-width="2"/>
+    <line x1="114" y1="144" x2="114" y2="160" stroke="#00B4D8" stroke-width="2"/>
+
+    <!-- Transparent Probe Cap with Dual Titanium Electrodes -->
+    <rect x="76" y="195" width="34" height="25" rx="4" fill="#00B4D8" fill-opacity="0.3" stroke="#00B4D8" stroke-width="1.5"/>
+    <rect x="83" y="200" width="4" height="20" rx="1.5" fill="#E2E8F0"/>
+    <rect x="99" y="200" width="4" height="20" rx="1.5" fill="#E2E8F0"/>
+  </g>
+
+  <!-- Purity Quality Badge (Bottom Left) -->
+  <g transform="translate(36, 185)" filter="url(#stShadow)">
+    <rect x="0" y="0" width="138" height="52" rx="12" fill="#FFFFFF" stroke="#CBE4F9" stroke-width="1.5"/>
+    <circle cx="26" cy="26" r="16" fill="#2EC4B6"/>
+    <path d="M 20,26 L 24,30 L 32,22" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <text x="48" y="22" fill="#0A1F44" font-family="'Inter',sans-serif" font-size="11" font-weight="800">IDEAL TDS</text>
+    <text x="48" y="36" fill="#0077B6" font-family="'Inter',sans-serif" font-size="10" font-weight="600">45–80 mg/L</text>
+  </g>
+</svg>

@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%" role="img" aria-labelledby="sfam-title sfam-desc">
+  <title id="sfam-title">Safe & Healthy Drinking Water for Vizag Families</title>
+  <desc id="sfam-desc">Happy Indian mother and child drinking crystal pure water from a glass with health and immunity shield.</desc>
+  <defs>
+    <linearGradient id="sfamBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2F9FD"/>
+      <stop offset="100%" stop-color="#E2F1FC"/>
+    </linearGradient>
+    <linearGradient id="momDress" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0066CC"/>
+      <stop offset="100%" stop-color="#0A1F44"/>
+    </linearGradient>
+    <linearGradient id="kidDress" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFB703"/>
+      <stop offset="100%" stop-color="#FF8A00"/>
+    </linearGradient>
+    <linearGradient id="skinGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D99B5E"/>
+      <stop offset="100%" stop-color="#B07038"/>
+    </linearGradient>
+    <linearGradient id="glassGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.8"/>
+      <stop offset="40%" stop-color="#48CAE4" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#0077B6" stop-opacity="0.9"/>
+    </linearGradient>
+    <filter id="sfamShadow" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#002244" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <style>
+    .fam-sparkle { animation: famSparkle 3s ease-in-out infinite; }
+    @keyframes famSparkle {
+      0%, 100% { opacity: 0.2; transform: scale(0.6); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .fam-sparkle { animation: none !important; }
+    }
+  </style>
+
+  <!-- Background Card -->
+  <rect width="400" height="300" rx="16" fill="url(#sfamBg)"/>
+  <circle cx="200" cy="150" r="110" fill="#00B4D8" fill-opacity="0.12"/>
+  
+  <!-- Healthy Immunity Sun Aura -->
+  <circle cx="200" cy="140" r="85" fill="#2EC4B6" fill-opacity="0.15"/>
+
+  <!-- Mother Character (Left/Center) -->
+  <g id="mother-character" filter="url(#sfamShadow)">
+    <!-- Hair Bun -->
+    <circle cx="160" cy="95" r="18" fill="#1A1A1A"/>
+    <!-- Head -->
+    <ellipse cx="175" cy="110" rx="17" ry="20" fill="url(#skinGrad1)"/>
+    <!-- Hair Over Head -->
+    <path d="M 158,105 C 160,85 195,85 192,108 C 185,96 170,96 158,105 Z" fill="#1A1A1A"/>
+    <!-- Friendly Smile & Eye -->
+    <path d="M 175,108 Q 180,105 185,107" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <path d="M 178,118 Q 183,124 188,118" stroke="#8A2C0D" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <circle cx="174" cy="114" r="3.5" fill="#E26D5C" opacity="0.3"/>
+    <!-- Neck & Torso -->
+    <path d="M 171,130 L 171,142 L 182,142 L 182,130 Z" fill="url(#skinGrad1)"/>
+    <path d="M 148,225 L 158,142 Q 178,138 198,142 L 208,225 Z" fill="url(#momDress)"/>
+    <!-- Arm Offering/Holding Glass of Water -->
+    <path d="M 194,152 L 216,172 L 208,182 L 188,162 Z" fill="url(#momDress)"/>
+    <path d="M 216,172 L 232,176 Q 236,182 230,185 L 208,182 Z" fill="url(#skinGrad1)"/>
+  </g>
+
+  <!-- Child Character (Right) -->
+  <g id="child-character" filter="url(#sfamShadow)">
+    <!-- Head -->
+    <circle cx="258" cy="145" r="16" fill="url(#skinGrad1)"/>
+    <!-- Child Hair with Bangs -->
+    <path d="M 242,142 C 242,126 274,126 274,142 C 268,134 250,134 242,142 Z" fill="#1A1A1A"/>
+    <!-- Eyes & Big Smile -->
+    <circle cx="252" cy="144" r="2" fill="#1A1A1A"/>
+    <path d="M 250,152 Q 256,158 262,152" stroke="#8A2C0D" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <circle cx="248" cy="149" r="3" fill="#E26D5C" opacity="0.4"/>
+    <!-- Child Torso in Bright Yellow/Orange -->
+    <path d="M 240,225 L 246,165 Q 260,162 274,165 L 280,225 Z" fill="url(#kidDress)"/>
+    <!-- Child Arm Reaching for Clean Water -->
+    <path d="M 248,172 L 235,178 L 238,185 L 254,178 Z" fill="url(#kidDress)"/>
+    <ellipse cx="232" cy="180" rx="5" ry="4" fill="url(#skinGrad1)"/>
+  </g>
+
+  <!-- Glass of Crystal Clear Pure Water (Center Stage) -->
+  <g filter="url(#sfamShadow)" transform="translate(216, 150)">
+    <path d="M 4,4 L 8,42 Q 9,46 14,46 L 22,46 Q 27,46 28,42 L 32,4 Z" fill="url(#glassGrad)" stroke="#FFFFFF" stroke-width="1.8"/>
+    <!-- Water Level -->
+    <ellipse cx="18" cy="14" rx="11" ry="3" fill="#90E0EF"/>
+    <!-- Glass Highlights -->
+    <path d="M 8,10 L 11,38" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+  </g>
+
+  <!-- Heart & Health Shield Badge (Top Right) -->
+  <g transform="translate(295, 30)" filter="url(#sfamShadow)">
+    <circle cx="32" cy="32" r="26" fill="#0A1F44" stroke="#2EC4B6" stroke-width="2"/>
+    <!-- Heart Icon Inside -->
+    <path d="M 32,42 C 24,34 20,29 20,24 C 20,20.5 22.5,18 26,18 C 28.5,18 30.8,19.5 32,21.5 C 33.2,19.5 35.5,18 38,18 C 41.5,18 44,20.5 44,24 C 44,29 40,34 32,42 Z" fill="#2EC4B6"/>
+  </g>
+
+  <!-- Clean Water Quality Banner (Bottom Center) -->
+  <g transform="translate(110, 242)" filter="url(#sfamShadow)">
+    <rect x="0" y="0" width="180" height="34" rx="17" fill="#FFFFFF" stroke="#BCE0FD" stroke-width="1.5"/>
+    <circle cx="18" cy="17" r="10" fill="#00B4D8"/>
+    <path d="M 18,11 C 15,14 13,17 18,22 C 23,17 21,14 18,11 Z" fill="#FFFFFF"/>
+    <text x="36" y="21" fill="#0A1F44" font-family="'Inter',sans-serif" font-size="11" font-weight="700">100% HEALTHY WATER</text>
+  </g>
+
+  <!-- Sparkles -->
+  <circle cx="210" cy="145" r="3" fill="#00B4D8" class="fam-sparkle"/>
+  <circle cx="245" cy="138" r="2.5" fill="#2EC4B6" class="fam-sparkle" style="animation-delay:1.2s"/>
+  <circle cx="150" cy="165" r="2" fill="#FFFFFF" class="fam-sparkle" style="animation-delay:0.6s"/>
+</svg>

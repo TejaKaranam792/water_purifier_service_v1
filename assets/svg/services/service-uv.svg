@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%" role="img" aria-labelledby="suv-title suv-desc">
+  <title id="suv-title">UV Lamp Disinfection & Sterilization in Visakhapatnam</title>
+  <desc id="suv-desc">Stainless steel UV chamber with glowing quartz lamp eliminating waterborne bacteria and microbes.</desc>
+  <defs>
+    <linearGradient id="suvBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2F6FE"/>
+      <stop offset="100%" stop-color="#E5ECFB"/>
+    </linearGradient>
+    <linearGradient id="steelChamber" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E2E8F0"/>
+      <stop offset="40%" stop-color="#CBD5E1"/>
+      <stop offset="70%" stop-color="#94A3B8"/>
+      <stop offset="100%" stop-color="#64748B"/>
+    </linearGradient>
+    <linearGradient id="uvRays" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#9D4EDD"/>
+      <stop offset="50%" stop-color="#7B2CBF"/>
+      <stop offset="100%" stop-color="#5A189A"/>
+    </linearGradient>
+    <linearGradient id="uvTube" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E0AAFF"/>
+      <stop offset="50%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#C77DFF"/>
+    </linearGradient>
+    <filter id="uvGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="suvShadow" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#1A103C" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  <style>
+    .uv-pulse { animation: uvPulse 2.8s ease-in-out infinite alternate; }
+    .uv-ray { animation: uvRayRotate 8s linear infinite; }
+    @keyframes uvPulse {
+      0% { opacity: 0.7; transform: scale(0.97); transform-origin: 200px 145px; }
+      100% { opacity: 1; transform: scale(1.04); transform-origin: 200px 145px; }
+    }
+    @keyframes uvRayRotate {
+      0% { transform: rotate(0deg); transform-origin: 200px 145px; }
+      100% { transform: rotate(360deg); transform-origin: 200px 145px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .uv-pulse, .uv-ray { animation: none !important; }
+    }
+  </style>
+
+  <!-- Background Card -->
+  <rect width="400" height="300" rx="16" fill="url(#suvBg)"/>
+  
+  <!-- Glowing Violet Ambient Aura -->
+  <circle cx="200" cy="145" r="90" fill="#7B2CBF" fill-opacity="0.15" class="uv-pulse"/>
+  <circle cx="200" cy="145" r="60" fill="#9D4EDD" fill-opacity="0.2" class="uv-pulse"/>
+
+  <!-- Rotating UV Sterilization Light Rays -->
+  <g class="uv-ray" opacity="0.35">
+    <line x1="200" y1="55" x2="200" y2="235" stroke="#7B2CBF" stroke-width="2" stroke-dasharray="6 8"/>
+    <line x1="110" y1="145" x2="290" y2="145" stroke="#7B2CBF" stroke-width="2" stroke-dasharray="6 8"/>
+    <line x1="136" y1="81" x2="264" y2="209" stroke="#9D4EDD" stroke-width="2" stroke-dasharray="6 8"/>
+    <line x1="136" y1="209" x2="264" y2="81" stroke="#9D4EDD" stroke-width="2" stroke-dasharray="6 8"/>
+  </g>
+
+  <!-- UV Chamber (Stainless Steel Housing) -->
+  <g filter="url(#suvShadow)">
+    <!-- Base Mounting Brackets -->
+    <rect x="70" y="175" width="22" height="35" rx="5" fill="#475569"/>
+    <rect x="308" y="175" width="22" height="35" rx="5" fill="#475569"/>
+
+    <!-- Left & Right Chrome End Caps -->
+    <rect x="45" y="115" width="30" height="60" rx="8" fill="url(#steelChamber)"/>
+    <rect x="325" y="115" width="30" height="60" rx="8" fill="url(#steelChamber)"/>
+
+    <!-- Stainless Chamber Cylinder (Outer Body) -->
+    <rect x="70" y="118" width="260" height="54" rx="8" fill="url(#steelChamber)"/>
+    
+    <!-- Cutaway Window Showing Glowing Quartz Sleeve -->
+    <rect x="96" y="125" width="208" height="40" rx="6" fill="#0A1F44"/>
+    <rect x="98" y="127" width="204" height="36" rx="5" fill="#240046"/>
+
+    <!-- Glowing Quartz Sleeve Tube -->
+    <rect x="88" y="136" width="224" height="18" rx="9" fill="url(#uvTube)" filter="url(#uvGlow)"/>
+    
+    <!-- Water Inlet Port Top Left -->
+    <rect x="110" y="85" width="20" height="35" rx="4" fill="url(#steelChamber)"/>
+    <!-- Water Outlet Port Top Right -->
+    <rect x="270" y="85" width="20" height="35" rx="4" fill="url(#steelChamber)"/>
+
+    <!-- Flow Arrows at Ports -->
+    <path d="M 120,72 L 120,95 M 115,88 L 120,95 L 125,88" stroke="#00B4D8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <path d="M 280,95 L 280,72 M 275,79 L 280,72 L 285,79" stroke="#2EC4B6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+    <!-- Stainless Steel Metallic Polish Highlights -->
+    <path d="M 75,124 L 325,124" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  </g>
+
+  <!-- Germfree 99.9% Shield Badge (Bottom Right) -->
+  <g transform="translate(245, 195)" filter="url(#suvShadow)">
+    <rect x="0" y="0" width="130" height="56" rx="12" fill="#FFFFFF" stroke="#D8B4FE" stroke-width="1.5"/>
+    <circle cx="28" cy="28" r="16" fill="#7B2CBF"/>
+    <path d="M 28,18 C 23,21 21,26 28,36 C 35,26 33,21 28,18 Z" fill="#FFFFFF"/>
+    <text x="50" y="24" fill="#0A1F44" font-family="'Inter',sans-serif" font-size="11" font-weight="800">99.9% PURE</text>
+    <text x="50" y="38" fill="#7B2CBF" font-family="'Inter',sans-serif" font-size="10" font-weight="700">UV Sterilized</text>
+  </g>
+
+  <!-- Water Droplets Sparkle -->
+  <circle cx="120" cy="62" r="3" fill="#00B4D8"/>
+  <circle cx="280" cy="60" r="3.5" fill="#2EC4B6"/>
+</svg>

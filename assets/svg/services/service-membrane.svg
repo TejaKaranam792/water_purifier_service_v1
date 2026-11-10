@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%" role="img" aria-labelledby="sm-title sm-desc">
+  <title id="sm-title">RO Membrane Replacement Service in Visakhapatnam</title>
+  <desc id="sm-desc">Illustration of a high-efficiency RO membrane element inside its pressure vessel with clean water flow arrows.</desc>
+  <defs>
+    <linearGradient id="smBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0F7FF"/>
+      <stop offset="100%" stop-color="#E2EEFC"/>
+    </linearGradient>
+    <linearGradient id="vesselGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0066CC"/>
+      <stop offset="50%" stop-color="#004D99"/>
+      <stop offset="100%" stop-color="#0A1F44"/>
+    </linearGradient>
+    <linearGradient id="sheetGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="60%" stop-color="#E5F3FE"/>
+      <stop offset="100%" stop-color="#B8DEFC"/>
+    </linearGradient>
+    <linearGradient id="coreGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00B4D8"/>
+      <stop offset="100%" stop-color="#0077B6"/>
+    </linearGradient>
+    <filter id="smShadow" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#002855" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <style>
+    .sm-flow { animation: smFlow 3s ease-in-out infinite; }
+    .sm-sparkle { animation: smSparkle 2.5s ease-in-out infinite; }
+    @keyframes smFlow {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(8px); }
+    }
+    @keyframes smSparkle {
+      0%, 100% { opacity: 0.3; transform: scale(0.6); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .sm-flow, .sm-sparkle { animation: none !important; }
+    }
+  </style>
+
+  <!-- Background Card Canvas -->
+  <rect width="400" height="300" rx="16" fill="url(#smBg)"/>
+  <circle cx="200" cy="150" r="110" fill="#00B4D8" fill-opacity="0.12"/>
+  <circle cx="200" cy="150" r="75" fill="#00B4D8" fill-opacity="0.1"/>
+
+  <!-- Membrane Housing Vessel (Outer Cylinder) -->
+  <g filter="url(#smShadow)">
+    <rect x="50" y="112" width="130" height="76" rx="14" fill="url(#vesselGrad)"/>
+    <rect x="42" y="106" width="18" height="88" rx="6" fill="#0A1F44"/>
+    <rect x="46" y="142" width="14" height="16" rx="3" fill="#00B4D8"/>
+    <!-- Housing Highlights -->
+    <path d="M 64,124 L 170,124" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/>
+    <!-- Vessel Cap Ring -->
+    <rect x="172" y="108" width="12" height="84" rx="4" fill="#0F3369"/>
+  </g>
+
+  <!-- Spiral Membrane Cartridge Core Extending Right -->
+  <g filter="url(#smShadow)" transform="translate(160, 118)">
+    <!-- Central Pure Water Permeate Tube -->
+    <rect x="12" y="24" width="195" height="16" rx="4" fill="url(#coreGrad)"/>
+    <rect x="195" y="27" width="18" height="10" rx="3" fill="#00B4D8"/>
+
+    <!-- Spiral Wound Polyamide Layers -->
+    <rect x="16" y="6" width="168" height="52" rx="10" fill="url(#sheetGrad)" stroke="#A8D4F7" stroke-width="1.5"/>
+    
+    <!-- Wound Membrane Wrap Lines -->
+    <line x1="45" y1="6" x2="45" y2="58" stroke="#0077B6" stroke-width="1.8" stroke-dasharray="3 2" opacity="0.7"/>
+    <line x1="75" y1="6" x2="75" y2="58" stroke="#0077B6" stroke-width="1.8" stroke-dasharray="3 2" opacity="0.7"/>
+    <line x1="105" y1="6" x2="105" y2="58" stroke="#0077B6" stroke-width="1.8" stroke-dasharray="3 2" opacity="0.7"/>
+    <line x1="135" y1="6" x2="135" y2="58" stroke="#0077B6" stroke-width="1.8" stroke-dasharray="3 2" opacity="0.7"/>
+    <line x1="165" y1="6" x2="165" y2="58" stroke="#0077B6" stroke-width="1.8" stroke-dasharray="3 2" opacity="0.7"/>
+
+    <!-- Seal Ring -->
+    <rect x="16" y="2" width="10" height="60" rx="3" fill="#004D99"/>
+    
+    <!-- Outer Mesh Net Texture -->
+    <path d="M 28,12 L 180,12 M 28,52 L 180,52" stroke="#FFFFFF" stroke-width="2" opacity="0.7"/>
+  </g>
+
+  <!-- Flow Direction Arrows (Purified Water Flow) -->
+  <g class="sm-flow">
+    <path d="M 220,76 L 255,76 M 248,70 L 256,76 L 248,82" stroke="#00B4D8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <path d="M 270,76 L 305,76 M 298,70 L 306,76 L 298,82" stroke="#2EC4B6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <text x="210" y="64" fill="#0077B6" font-family="'Inter',sans-serif" font-size="11" font-weight="700" letter-spacing="0.5">RO PERMEATE FLOW</text>
+  </g>
+
+  <!-- Service Wrench Tool Accent (Bottom Left) -->
+  <g transform="translate(68, 206) rotate(-18)" opacity="0.88">
+    <path d="M 8,0 L 52,0 L 52,8 L 8,8 Z" fill="#90A4AE"/>
+    <circle cx="6" cy="4" r="10" fill="#78909C"/>
+    <circle cx="6" cy="4" r="5" fill="#F0F7FF"/>
+  </g>
+
+  <!-- Quality Seal Badge (Bottom Right) -->
+  <g transform="translate(295, 205)" filter="url(#smShadow)">
+    <circle cx="32" cy="32" r="26" fill="#00B4D8"/>
+    <circle cx="32" cy="32" r="21" fill="#0A1F44"/>
+    <path d="M 24,32 L 29,37 L 41,25" stroke="#2EC4B6" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+
+  <!-- Pure Sparkles -->
+  <circle cx="210" cy="100" r="3" fill="#00B4D8" class="sm-sparkle"/>
+  <circle cx="350" cy="115" r="4" fill="#2EC4B6" class="sm-sparkle" style="animation-delay:0.8s"/>
+  <circle cx="330" cy="165" r="2.5" fill="#FFFFFF" class="sm-sparkle" style="animation-delay:1.4s"/>
+</svg>

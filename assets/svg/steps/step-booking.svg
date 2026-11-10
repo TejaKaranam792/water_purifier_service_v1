@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" width="100%" height="100%" role="img" aria-labelledby="step1-title step1-desc">
+  <title id="step1-title">Step 1: Book RO Service in 60 Seconds</title>
+  <desc id="step1-desc">Smartphone displaying service booking calendar and chat message.</desc>
+  <defs>
+    <linearGradient id="phoneBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0F2A56"/>
+      <stop offset="100%" stop-color="#061633"/>
+    </linearGradient>
+    <linearGradient id="screenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F0F7FF"/>
+    </linearGradient>
+    <linearGradient id="bubbleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2EC4B6"/>
+      <stop offset="100%" stop-color="#00A896"/>
+    </linearGradient>
+    <filter id="stepShadow" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#001838" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+  <style>
+    .step-chat-pulse { animation: chatPulse 3s ease-in-out infinite alternate; }
+    .step-stroke-draw { stroke-dasharray: 200; stroke-dashoffset: 200; animation: strokeDraw 2.4s ease-out forwards; }
+    @keyframes chatPulse {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-5px); }
+    }
+    @keyframes strokeDraw {
+      to { stroke-dashoffset: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .step-chat-pulse, .step-stroke-draw { animation: none !important; stroke-dashoffset: 0 !important; }
+    }
+  </style>
+
+  <!-- Background Soft Aura -->
+  <circle cx="160" cy="160" r="130" fill="#00B4D8" fill-opacity="0.1"/>
+  <circle cx="160" cy="160" r="95" fill="#004D99" fill-opacity="0.08"/>
+
+  <!-- Base Shadow -->
+  <ellipse cx="160" cy="275" rx="75" ry="12" fill="#001838" opacity="0.2"/>
+
+  <!-- Smartphone (Centered) -->
+  <g filter="url(#stepShadow)" transform="translate(85, 40)">
+    <!-- Phone Bezel & Outer Frame -->
+    <rect x="0" y="0" width="150" height="235" rx="28" fill="url(#phoneBody)" stroke="#00B4D8" stroke-width="2.5"/>
+    
+    <!-- Speaker & Front Camera Hole -->
+    <rect x="52" y="10" width="46" height="5" rx="2.5" fill="#00B4D8" opacity="0.6"/>
+    <circle cx="106" cy="12" r="3" fill="#00B4D8" opacity="0.6"/>
+
+    <!-- Screen Area -->
+    <rect x="8" y="24" width="134" height="195" rx="20" fill="url(#screenGrad)"/>
+
+    <!-- Top App Header -->
+    <rect x="8" y="24" width="134" height="38" rx="18" fill="#004D99"/>
+    <rect x="8" y="44" width="134" height="18" fill="#004D99"/>
+    <circle cx="28" cy="42" r="9" fill="#00B4D8"/>
+    <path d="M 28,37 C 26,39 24,41 28,45 C 32,41 30,39 28,37 Z" fill="#FFFFFF"/>
+    <text x="44" y="46" fill="#FFFFFF" font-family="'Inter',sans-serif" font-size="11" font-weight="800">HMT AQUA</text>
+
+    <!-- Calendar Card View Inside App -->
+    <rect x="18" y="74" width="114" height="110" rx="10" fill="#FFFFFF" stroke="#D3E6F8" stroke-width="1.5"/>
+    <!-- Calendar Header (Month) -->
+    <rect x="18" y="74" width="114" height="26" rx="9" fill="#00B4D8"/>
+    <rect x="18" y="88" width="114" height="12" fill="#00B4D8"/>
+    <text x="75" y="91" fill="#FFFFFF" font-family="'Inter',sans-serif" font-size="10" font-weight="800" text-anchor="middle">SELECT DATE</text>
+
+    <!-- Calendar Grid Rows -->
+    <g fill="#0A1F44" opacity="0.6" font-family="'Inter',sans-serif" font-size="8" font-weight="700" text-anchor="middle">
+      <!-- Weekday headers -->
+      <text x="32" y="112">M</text><text x="50" y="112">T</text><text x="68" y="112">W</text><text x="86" y="112">T</text><text x="104" y="112">F</text><text x="120" y="112">S</text>
+      <!-- Date dots / active booking selection -->
+      <circle cx="32" cy="125" r="5" fill="#E2EDF8"/>
+      <circle cx="50" cy="125" r="5" fill="#E2EDF8"/>
+      <circle cx="68" cy="125" r="5" fill="#E2EDF8"/>
+      <!-- Selected Slot (Today - Orange) -->
+      <circle cx="86" cy="125" r="8" fill="#FF8A00"/>
+      <text x="86" y="128" fill="#FFFFFF" font-size="8" font-weight="900">TODAY</text>
+      <circle cx="104" cy="125" r="5" fill="#E2EDF8"/>
+      <circle cx="120" cy="125" r="5" fill="#E2EDF8"/>
+    </g>
+
+    <!-- Confirm Slot Button in Screen -->
+    <rect x="24" y="146" width="102" height="24" rx="8" fill="#004D99"/>
+    <text x="75" y="162" fill="#FFFFFF" font-family="'Inter',sans-serif" font-size="9" font-weight="800" text-anchor="middle">BOOK 30-MIN VISIT</text>
+  </g>
+
+  <!-- Floating Chat Notification Bubble (Top Right) -->
+  <g class="step-chat-pulse" filter="url(#stepShadow)" transform="translate(170, 48)">
+    <rect x="0" y="0" width="135" height="52" rx="16" fill="url(#bubbleGrad)"/>
+    <!-- Speech Triangle Tail -->
+    <polygon points="18,52 32,52 22,62" fill="#00A896"/>
+    <!-- WhatsApp / Chat Icon -->
+    <circle cx="24" cy="26" r="12" fill="#FFFFFF"/>
+    <path d="M 24,18 C 19.5,18 16,21.5 16,26 C 16,27.5 16.5,29 17.2,30.2 L 16.5,33.5 L 20,32.8 C 21.2,33.5 22.5,34 24,34 C 28.5,34 32,30.5 32,26 C 32,21.5 28.5,18 24,18 Z" fill="#2EC4B6"/>
+    <!-- Message Text -->
+    <text x="44" y="22" fill="#0A1F44" font-family="'Inter',sans-serif" font-size="9" font-weight="800">Quick WhatsApp</text>
+    <text x="44" y="36" fill="#FFFFFF" font-family="'Inter',sans-serif" font-size="8.5" font-weight="700">"Technician needed"</text>
+  </g>
+
+  <!-- Step Number Badge 01 (Bottom Left) -->
+  <g transform="translate(25, 220)" filter="url(#stepShadow)">
+    <circle cx="28" cy="28" r="24" fill="#0A1F44" stroke="#00B4D8" stroke-width="2"/>
+    <text x="28" y="36" fill="#00B4D8" font-family="'Inter',sans-serif" font-size="20" font-weight="900" text-anchor="middle">01</text>
+  </g>
+</svg>

@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%" role="img" aria-labelledby="fa-title fa-desc">
+  <title id="fa-title">Clean White New RO Filter Cartridge After Service</title>
+  <desc id="fa-desc">Brand new snow-white 5-micron sediment filter cartridge and crystal clear pure drinking water after technician service.</desc>
+  <defs>
+    <linearGradient id="cleanBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0F9FF"/>
+      <stop offset="100%" stop-color="#E0F2FE"/>
+    </linearGradient>
+    <linearGradient id="cleanFilter" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="40%" stop-color="#F8FAFC"/>
+      <stop offset="80%" stop-color="#EDF5FD"/>
+      <stop offset="100%" stop-color="#D6E8FA"/>
+    </linearGradient>
+    <linearGradient id="cleanWater" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#0284C7" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#0369A1" stop-opacity="0.95"/>
+    </linearGradient>
+    <linearGradient id="blueCaps" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00B4D8"/>
+      <stop offset="100%" stop-color="#0077B6"/>
+    </linearGradient>
+    <filter id="faShadow" x="-10%" y="-10%" width="125%" height="125%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#002D62" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="400" rx="20" fill="url(#cleanBg)"/>
+  <circle cx="200" cy="200" r="140" fill="#00B4D8" fill-opacity="0.12"/>
+  <circle cx="400" cy="200" r="140" fill="#2EC4B6" fill-opacity="0.12"/>
+
+  <!-- Crisp Clean White Filter Cartridge (Left Center) -->
+  <g filter="url(#faShadow)" transform="translate(140, 50)">
+    <!-- Blue Clean End Caps -->
+    <rect x="0" y="0" width="80" height="22" rx="6" fill="url(#blueCaps)"/>
+    <rect x="25" y="-12" width="30" height="14" rx="4" fill="#0077B6"/>
+    
+    <!-- Snow-White Clean Filter Body -->
+    <rect x="6" y="20" width="68" height="250" rx="6" fill="url(#cleanFilter)" stroke="#C5E2FA" stroke-width="2"/>
+    
+    <!-- Fine Clean Meltblown Grooves -->
+    <g stroke="#D0E7FC" stroke-width="2">
+      <line x1="8" y1="45" x2="72" y2="45"/>
+      <line x1="8" y1="80" x2="72" y2="80"/>
+      <line x1="8" y1="115" x2="72" y2="115"/>
+      <line x1="8" y1="150" x2="72" y2="150"/>
+      <line x1="8" y1="185" x2="72" y2="185"/>
+      <line x1="8" y1="220" x2="72" y2="220"/>
+      <line x1="8" y1="250" x2="72" y2="250"/>
+    </g>
+
+    <!-- Pure Water Sparkle Highlights on White Filter -->
+    <line x1="18" y1="26" x2="18" y2="260" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" opacity="0.8"/>
+    <circle cx="28" cy="70" r="3" fill="#FFFFFF"/>
+    <circle cx="36" cy="140" r="2.5" fill="#FFFFFF"/>
+    <circle cx="24" cy="210" r="3" fill="#FFFFFF"/>
+
+    <!-- Bottom Cap -->
+    <rect x="0" y="268" width="80" height="22" rx="6" fill="url(#blueCaps)"/>
+    <rect x="25" y="288" width="30" height="12" rx="4" fill="#0077B6"/>
+  </g>
+
+  <!-- Glass of Crystal Clear Pure RO Water (Right Center) -->
+  <g filter="url(#faShadow)" transform="translate(340, 80)">
+    <!-- Base Shadow -->
+    <ellipse cx="65" cy="225" rx="55" ry="12" fill="#001F3F" opacity="0.2"/>
+
+    <!-- Glass Body Outline -->
+    <path d="M 12,20 L 22,210 Q 24,220 36,220 L 94,220 Q 106,220 108,210 L 118,20 Z" fill="#FFFFFF" fill-opacity="0.4" stroke="#BAE6FD" stroke-width="2.5"/>
+
+    <!-- Crystal Clear Pure Water -->
+    <path d="M 16,65 Q 65,60 114,65 L 106,210 Q 104,216 94,216 L 36,216 Q 26,216 24,210 Z" fill="url(#cleanWater)"/>
+    <ellipse cx="65" cy="65" rx="49" ry="10" fill="#7DD3FC"/>
+
+    <!-- Rising Pure Water Bubbles -->
+    <circle cx="45" cy="170" r="3.5" fill="#FFFFFF" opacity="0.8"/>
+    <circle cx="75" cy="150" r="4.5" fill="#FFFFFF" opacity="0.7"/>
+    <circle cx="55" cy="120" r="3" fill="#FFFFFF" opacity="0.9"/>
+    <circle cx="85" cy="95" r="4" fill="#FFFFFF" opacity="0.8"/>
+
+    <!-- Glass Glare Highlights -->
+    <path d="M 24,35 L 34,200" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" opacity="0.8"/>
+    <path d="M 38,40 L 44,185" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  </g>
+
+  <!-- Success Clean Badge -->
+  <g transform="translate(40, 40)" filter="url(#faShadow)">
+    <rect x="0" y="0" width="160" height="38" rx="19" fill="#2EC4B6"/>
+    <circle cx="19" cy="19" r="11" fill="#FFFFFF"/>
+    <path d="M 14,19 L 18,23 L 24,15" stroke="#2EC4B6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <text x="38" y="24" fill="#FFFFFF" font-family="'Inter',sans-serif" font-size="12" font-weight="800">AFTER SERVICE</text>
+  </g>
+
+  <!-- Purity Highlights Tag (Bottom Center) -->
+  <g transform="translate(160, 345)" filter="url(#faShadow)">
+    <rect x="0" y="0" width="280" height="34" rx="17" fill="#0A1F44"/>
+    <text x="140" y="22" fill="#7FE5F6" font-family="'Inter',sans-serif" font-size="11" font-weight="700" text-anchor="middle">100% Genuine Filter · TDS 45–80 · Sweet Taste</text>
+  </g>
+
+  <!-- Sparkling Pure Stars -->
+  <path d="M 450,70 Q 455,70 455,65 Q 455,70 460,70 Q 455,70 455,75 Q 455,70 450,70 Z" fill="#00B4D8" transform="scale(1.5) translate(-140,-15)"/>
+  <path d="M 280,180 Q 284,180 284,176 Q 284,180 288,180 Q 284,180 284,184 Q 284,180 280,180 Z" fill="#2EC4B6" transform="scale(1.4) translate(-75,-45)"/>
+</svg>
