@@ -784,8 +784,8 @@ input, select, textarea {
 
 .hero-line {
   display: block;
-  opacity: 0;
-  transform: translateY(18px);
+  opacity: 1;
+  transform: none;
 }
 
 .hero-line.l1 {
@@ -803,8 +803,8 @@ input, select, textarea {
   color: #D3E4F8;
   margin-bottom: var(--sp-3);
   max-width: 540px;
-  opacity: 0;
-  transform: translateY(14px);
+  opacity: 1;
+  transform: none;
   animation: heroFadeSlide 0.65s 240ms ease both;
 }
 
@@ -814,8 +814,8 @@ input, select, textarea {
   flex-wrap: wrap;
   gap: var(--sp-1);
   margin-bottom: var(--sp-4);
-  opacity: 0;
-  transform: translateY(14px);
+  opacity: 1;
+  transform: none;
   animation: heroFadeSlide 0.65s 320ms ease both;
 }
 
@@ -848,8 +848,8 @@ input, select, textarea {
   gap: var(--sp-2);
   margin-bottom: var(--sp-4);
   width: 100%;
-  opacity: 0;
-  transform: translateY(14px);
+  opacity: 1;
+  transform: none;
   animation: heroFadeSlide 0.65s 400ms ease both;
 }
 
@@ -867,7 +867,7 @@ input, select, textarea {
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: var(--radius-md);
   padding: 8px 14px;
-  opacity: 0;
+  opacity: 1;
   animation: heroFadeSlide 0.65s 480ms ease both;
 }
 
