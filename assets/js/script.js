@@ -1,5 +1,5 @@
 /**
- * HMT Aqua - Premium Vanilla JS Engine
+ * Pure Flow - Premium Vanilla JS Engine
  * Mobile-first · 60fps animations · Conversion & trust features
  * Respects prefers-reduced-motion
  */
@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
       phoneInput?.classList.remove('input-error');
 
       const whatsappText =
-        `Hi HMT Aqua, I want to book RO service.\n\n` +
+        `Hi Pure Flow, I want to book RO service.\n\n` +
         `• Name: ${nameVal}\n` +
         `• Mobile: ${phoneVal}\n` +
         `• Brand: ${brandVal}\n` +

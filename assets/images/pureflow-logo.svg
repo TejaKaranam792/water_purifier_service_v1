@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" fill="none" role="img" aria-label="Pure Flow Water Purifier Services">
+  <defs>
+    <linearGradient id="pfiBg" x1="0" y1="0" x2="52" y2="52" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#004D99"/>
+      <stop offset="100%" stop-color="#00B4D8"/>
+    </linearGradient>
+    <linearGradient id="pfiDrop" x1="12" y1="8" x2="40" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2EC4B6"/>
+      <stop offset="100%" stop-color="#00B4D8"/>
+    </linearGradient>
+    <linearGradient id="pfiFlowWave" x1="12" y1="12" x2="38" y2="38" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#E0F7FA"/>
+    </linearGradient>
+    <linearGradient id="flowTextGrad" x1="140" y1="14" x2="210" y2="36" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00B4D8"/>
+      <stop offset="100%" stop-color="#0077B6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Left Icon Emblem -->
+  <g transform="translate(4, 6)">
+    <rect width="52" height="52" rx="14" fill="url(#pfiBg)"/>
+    <rect x="0.75" y="0.75" width="50.5" height="50.5" rx="13.25" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" fill="none"/>
+    <!-- Outer Water Drop -->
+    <path d="M26 8 C26 8 13 22 13 30 C13 37.2 18.8 43 26 43 C33.2 43 39 37.2 39 30 C39 22 26 8 26 8 Z" fill="url(#pfiDrop)"/>
+    <!-- Inner S-Curve Flow -->
+    <path d="M26 12 C26 12 16 23 16 30 C16 34 18.5 37 22 39 C20 34 22 30 25 27 C29 23 31 19 28 14 Z" fill="url(#pfiFlowWave)"/>
+    <!-- Sparkle -->
+    <circle cx="21" cy="20" r="2" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Typography: Pure Flow -->
+  <text x="68" y="36" font-family="'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif" font-size="28" font-weight="800" fill="#0A1F44" letter-spacing="-0.5">Pure</text>
+  <text x="138" y="36" font-family="'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif" font-size="28" font-weight="800" fill="url(#flowTextGrad)" letter-spacing="-0.5">Flow</text>
+  
+  <!-- Subtitle: Water Purifier Services -->
+  <text x="69" y="52" font-family="'Inter', -apple-system, BlinkMacSystemFont, sans-serif" font-size="8.5" font-weight="700" fill="#004D99" letter-spacing="1.6">WATER PURIFIER SERVICES</text>
+</svg>

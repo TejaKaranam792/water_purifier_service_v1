@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Pure Flow Icon">
+  <defs>
+    <linearGradient id="pfBg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0A1F44"/>
+      <stop offset="50%" stop-color="#004D99"/>
+      <stop offset="100%" stop-color="#00B4D8"/>
+    </linearGradient>
+    <linearGradient id="pfDrop" x1="16" y1="12" x2="48" y2="52" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2EC4B6"/>
+      <stop offset="50%" stop-color="#00B4D8"/>
+      <stop offset="100%" stop-color="#0077B6"/>
+    </linearGradient>
+    <linearGradient id="pfFlowWave" x1="10" y1="20" x2="54" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#7FE5F6" stop-opacity="0.85"/>
+    </linearGradient>
+  </defs>
+  <!-- Background Badge -->
+  <rect width="64" height="64" rx="16" fill="url(#pfBg)"/>
+  <rect x="1" y="1" width="62" height="62" rx="15" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" fill="none"/>
+  
+  <!-- Outer Flowing Droplet Ribbon -->
+  <path d="M32 10 C32 10 16 28 16 38 C16 46.8 23.2 54 32 54 C40.8 54 48 46.8 48 38 C48 28 32 10 32 10 Z" fill="url(#pfDrop)"/>
+  
+  <!-- Flowing Dynamic S-Wave Inside Water Drop -->
+  <path d="M32 14 C32 14 20 28 20 37 C20 42 23 46 27 48 C25 43 27 38 31 34 C36 29 39 25 35 18 Z" fill="url(#pfFlowWave)"/>
+  
+  <!-- Secondary Pure Water Splash / Micro Drop -->
+  <path d="M36 32 C36 32 44 38 41 45 C38 49 33 50 32 50 C36 48 38 44 37 40 C36 36 34 34 36 32 Z" fill="#2EC4B6" opacity="0.9"/>
+  
+  <!-- Sparkle Highlight -->
+  <circle cx="26" cy="24" r="2.5" fill="#FFFFFF"/>
+</svg>

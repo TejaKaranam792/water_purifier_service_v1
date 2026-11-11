@@ -88,7 +88,7 @@ async function buildOgImage() {
     <circle cx="24" cy="21" r="10" fill="#00B4D8"/>
     <!-- Water droplet inside -->
     <path d="M 24,15 C 22,17 20,19.5 24,24 C 28,19.5 26,17 24,15 Z" fill="#FFFFFF"/>
-    <text x="44" y="27" class="text-chip" font-size="14" letter-spacing="0.5">HMT AQUA · VISAKHAPATNAM</text>
+    <text x="44" y="27" class="text-chip" font-size="14" letter-spacing="0.5">PURE FLOW · VISAKHAPATNAM</text>
   </g>
 
   <!-- Big Catchy Headline (Under 60 chars) -->
