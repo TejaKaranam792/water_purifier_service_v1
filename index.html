@@ -1708,8 +1708,89 @@
 
   <!-- Scripts -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <script src="assets/js/script.js" defer></script>
+  <script src="assets/js/script.js?v=2.2" defer></script>
 
-  
+  <script>
+    // Direct handler ensures fresh WhatsApp message with Location field
+    document.addEventListener('DOMContentLoaded', function() {
+      var bForm = document.getElementById('booking-form');
+      var locSel = document.getElementById('f-location');
+      var locCust = document.getElementById('f-location-custom');
+
+      if (locSel && locCust) {
+        locSel.addEventListener('change', function() {
+          if (locSel.value === 'Other Area') {
+            locCust.style.display = 'block';
+            locCust.focus();
+          } else {
+            locCust.style.display = 'none';
+            locCust.value = '';
+          }
+        });
+      }
+
+      if (bForm) {
+        bForm.addEventListener('submit', function(e) {
+          e.stopImmediatePropagation();
+          e.preventDefault();
+
+          var nameInput = document.getElementById('f-name');
+          var phoneInput = document.getElementById('f-phone');
+          var brandInput = document.getElementById('f-brand');
+          var issueInput = document.getElementById('f-issue');
+          var timeInput = document.getElementById('f-time');
+
+          var nameVal = nameInput ? nameInput.value.trim() : '';
+          var phoneVal = phoneInput ? phoneInput.value.trim() : '';
+          var brandVal = brandInput && brandInput.value ? brandInput.value : 'Water Purifier';
+          var issueVal = issueInput && issueInput.value ? issueInput.value : 'General Service';
+          var timeVal = timeInput && timeInput.value ? timeInput.value : 'As soon as possible (30-60 min)';
+
+          if (!nameVal || nameVal.length < 2) {
+            nameInput && nameInput.focus();
+            nameInput && nameInput.classList.add('input-error');
+            return;
+          }
+          nameInput && nameInput.classList.remove('input-error');
+
+          if (!phoneVal || !/^[6-9]\d{9}$/.test(phoneVal)) {
+            phoneInput && phoneInput.focus();
+            phoneInput && phoneInput.classList.add('input-error');
+            return;
+          }
+          phoneInput && phoneInput.classList.remove('input-error');
+
+          var locVal = 'Visakhapatnam';
+          if (locSel && locSel.value) {
+            if (locSel.value === 'Other Area' && locCust && locCust.value.trim()) {
+              locVal = locCust.value.trim() + ', Visakhapatnam';
+            } else if (locSel.value !== 'Other Area') {
+              locVal = locSel.value + ', Visakhapatnam';
+            }
+          }
+
+          var msg =
+            'Hi Pure Flow, I want to book RO service.\n\n' +
+            '• Name: ' + nameVal + '\n' +
+            '• Mobile: ' + phoneVal + '\n' +
+            '• Location: ' + locVal + '\n' +
+            '• Brand: ' + brandVal + '\n' +
+            '• Issue: ' + issueVal + '\n' +
+            '• Preferred Time: ' + timeVal;
+
+          var waUrl = 'https://wa.me/919180106453?text=' + encodeURIComponent(msg);
+          window.open(waUrl, '_blank', 'noopener,noreferrer');
+
+          var fWrap = document.getElementById('booking-form-wrap');
+          var sBox = document.getElementById('booking-success');
+          if (fWrap && sBox) {
+            fWrap.hidden = true;
+            sBox.hidden = false;
+            if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
+          }
+        }, true);
+      }
+    });
+  </script>
 </body>
 </html>
