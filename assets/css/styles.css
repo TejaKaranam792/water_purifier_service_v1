@@ -838,11 +838,22 @@ input, select, textarea {
   font-size: 1.0625rem;
   line-height: 1.6;
   color: #D3E4F8;
-  margin-bottom: var(--sp-3);
+  margin-bottom: var(--sp-2);
   max-width: 540px;
   opacity: 1;
   transform: none;
   animation: heroFadeSlide 0.65s 240ms ease both;
+}
+
+.hero-intro-text {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: #F0F6FC;
+  margin-bottom: var(--sp-4);
+  max-width: 560px;
+  opacity: 1;
+  transform: none;
+  animation: heroFadeSlide 0.65s 280ms ease both;
 }
 
 /* 3 Tick Chips */
