@@ -232,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `• Preferred Time: ${timeVal}\n` +
         `• City: Visakhapatnam`;
 
-      const whatsappUrl = `https://wa.me/919845331753?text=${encodeURIComponent(whatsappText)}`;
+      const whatsappUrl = `https://wa.me/919180106453?text=${encodeURIComponent(whatsappText)}`;
       window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
 
       if (formWrap && successBox) {
