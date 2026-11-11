@@ -476,9 +476,11 @@ input, select, textarea {
   flex-shrink: 0;
 }
 
-.logo-icon i {
+.logo-icon i,
+.logo-icon svg {
   width: 22px;
   height: 22px;
+  display: block;
 }
 
 .logo-text {
