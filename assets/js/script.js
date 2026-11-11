@@ -316,7 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ── 14. Smooth scroll with sticky header compensation ── */
+  /* ── 14. Smooth scroll with sticky header compensation & Service Pre-selection ── */
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', function(e) {
       const hash = this.getAttribute('href');
@@ -324,12 +324,45 @@ document.addEventListener('DOMContentLoaded', () => {
       const target = document.querySelector(hash);
       if (target) {
         e.preventDefault();
+
+        // If clicking a booking button that specifies a service or brand, prefill the form
+        const serviceIssue = this.getAttribute('data-service-issue');
+        const serviceBrand = this.getAttribute('data-service-brand');
+        if (serviceIssue) {
+          const issueSelect = document.getElementById('f-issue');
+          if (issueSelect) {
+            issueSelect.value = serviceIssue;
+          }
+        }
+        if (serviceBrand) {
+          const brandSelect = document.getElementById('f-brand');
+          if (brandSelect) {
+            brandSelect.value = serviceBrand;
+          }
+        }
+
         const offset = (header?.offsetHeight || 70) + 8;
         window.scrollTo({
           top: target.getBoundingClientRect().top + window.scrollY - offset,
           behavior: 'smooth'
         });
         closeMenu();
+
+        // If target is book-service, focus name field and highlight card
+        if (hash === '#book-service') {
+          setTimeout(() => {
+            const nameField = document.getElementById('f-name');
+            nameField?.focus();
+            const bookingCard = document.querySelector('.booking-card');
+            if (bookingCard) {
+              bookingCard.style.transition = 'box-shadow 0.35s ease';
+              bookingCard.style.boxShadow = '0 0 0 4px rgba(0, 180, 216, 0.45), 0 20px 40px rgba(0, 31, 68, 0.15)';
+              setTimeout(() => {
+                bookingCard.style.boxShadow = '';
+              }, 1600);
+            }
+          }, 450);
+        }
       }
     });
   });
