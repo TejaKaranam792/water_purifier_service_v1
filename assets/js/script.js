@@ -194,17 +194,39 @@ document.addEventListener('DOMContentLoaded', () => {
   const resetBtn    = document.getElementById('booking-reset');
 
   if (bookingForm) {
-    const nameInput  = document.getElementById('f-name');
-    const phoneInput = document.getElementById('f-phone');
-    const brandInput = document.getElementById('f-brand');
-    const issueInput = document.getElementById('f-issue');
-    const timeInput  = document.getElementById('f-time');
+    const nameInput     = document.getElementById('f-name');
+    const phoneInput    = document.getElementById('f-phone');
+    const locationInput = document.getElementById('f-location');
+    const locationCustom = document.getElementById('f-location-custom');
+    const brandInput    = document.getElementById('f-brand');
+    const issueInput    = document.getElementById('f-issue');
+    const timeInput     = document.getElementById('f-time');
+
+    if (locationInput && locationCustom) {
+      locationInput.addEventListener('change', () => {
+        if (locationInput.value === 'Other Area') {
+          locationCustom.style.display = 'block';
+          locationCustom.focus();
+        } else {
+          locationCustom.style.display = 'none';
+          locationCustom.value = '';
+        }
+      });
+    }
 
     bookingForm.addEventListener('submit', e => {
       e.preventDefault();
 
       const nameVal  = nameInput ? nameInput.value.trim() : '';
       const phoneVal = phoneInput ? phoneInput.value.trim() : '';
+      let locationVal = 'Visakhapatnam';
+      if (locationInput && locationInput.value) {
+        if (locationInput.value === 'Other Area' && locationCustom && locationCustom.value.trim()) {
+          locationVal = `${locationCustom.value.trim()}, Visakhapatnam`;
+        } else if (locationInput.value !== 'Other Area') {
+          locationVal = `${locationInput.value}, Visakhapatnam`;
+        }
+      }
       const brandVal = brandInput && brandInput.value ? brandInput.value : 'Water Purifier';
       const issueVal = issueInput && issueInput.value ? issueInput.value : 'General Service';
       const timeVal  = timeInput && timeInput.value ? timeInput.value : 'As soon as possible (30-60 min)';
@@ -227,10 +249,10 @@ document.addEventListener('DOMContentLoaded', () => {
         `Hi Pure Flow, I want to book RO service.\n\n` +
         `• Name: ${nameVal}\n` +
         `• Mobile: ${phoneVal}\n` +
+        `• Location: ${locationVal}\n` +
         `• Brand: ${brandVal}\n` +
         `• Issue: ${issueVal}\n` +
-        `• Preferred Time: ${timeVal}\n` +
-        `• City: Visakhapatnam`;
+        `• Preferred Time: ${timeVal}`;
 
       const whatsappUrl = `https://wa.me/919180106453?text=${encodeURIComponent(whatsappText)}`;
       window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
